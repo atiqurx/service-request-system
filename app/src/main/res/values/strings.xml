@@ -1,5 +1,24 @@
 <resources>
     <string name="app_name">srs</string>
+    <string name="welcome">Welcome</string>
+    <string name="login_acc">Log in your account.</string>
+    <string name="login">Log in</string>
+    <string name="signup">Sign up</string>
+    <string name="forget_password">Forgot Password.</string>
+    <string name="no_account_signup">Don\'t have an account? Sign up.</string>
+    <string name="already_account_login">Don\'t have an account? Log in.</string>
+    <string name="register">Register</string>
+    <string name="create_acc">Create a New Account.</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_no">Enter your Phone Number</string>
+    <string name="address">Enter your Address</string>
+    <string name="ent_email">Enter your Email</string>
+    <string name="ent_pass">Enter your Password</string>
+    <string name="ent_new_pass">Enter your New Password</string>
+    <string name="conf_pass">Confirm your Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="ent_reg_email">Enter your registered email.</string>
+    <string name="reset_pass">Reset Your Password</string>
     <string name="welcome_srs">Welcome to Service Request System</string>
     <string name="get_started">Get Started</string>
     <string name="are_provider">Are you a Service Provider?</string>
