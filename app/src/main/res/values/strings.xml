@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">srs</string>
+    <string name="welcome_srs">Welcome to Service Request System</string>
+    <string name="get_started">Get Started</string>
+    <string name="are_provider">Are you a Service Provider?</string>
+    <string name="click_here">Click Here</string>
 </resources>
