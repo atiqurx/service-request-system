@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">srs</string>
-    <string name="login">Log In</string>
-    <string name="signup">Sign Up</string>
+    <string name="login">Log in</string>
+    <string name="signup">Sign up</string>
     <string name="forget_password">Forgot Password?</string>
     <string name="no_account_signup">Don\'t have an account? Sign up.</string>
+    <string name="already_account_login">Don\'t have an account? Log in.</string>
     <string name="register">Register</string>
     <string name="create_acc">Create a New Account.</string>
     <string name="full_name">Full Name</string>
