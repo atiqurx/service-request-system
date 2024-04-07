@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">srs</string>
     <string name="login">Log In</string>
+    <string name="signup">Sign Up</string>
     <string name="forget_password">Forgot Password?</string>
-    <string name="no_account_signup">Don't have an account? Sign up.</string>
+    <string name="no_account_signup">Don\'t have an account? Sign up.</string>
+    <string name="register">Register</string>
+    <string name="create_acc">Create a New Account.</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_no">Enter your Phone Number</string>
+    <string name="address">Enter your Address</string>
+    <string name="ent_email">Enter your Email</string>
+    <string name="ent_pass">Enter your Password</string>
+    <string name="conf_pass">Confirm your Password</string>
 </resources>
