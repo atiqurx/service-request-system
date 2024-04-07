@@ -3,33 +3,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="650dp"
-    android:id="@+id/firstLayout"
-    android:orientation="vertical">
-
-</LinearLayout>
     <LinearLayout
+        android:id="@+id/firstLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/secondLayout"
-        android:layout_below="@+id/firstLayout"
-        android:orientation="horizontal">
-        
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:id="@+id/editText"
-            />
+        android:layout_height="690dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_srs" />
+
+
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="SignUp"/>
+            android:id="@+id/get_started"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/get_started"
+
+            />
+
+
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstLayout">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
+            android:layout_weight="2"
+            android:text="@string/are_provider"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1" />
+        <Button
+            android:id="@+id/provider_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/click_here"
+
+            />
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>
