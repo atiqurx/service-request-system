@@ -19,4 +19,8 @@
     <string name="confirm">Confirm</string>
     <string name="ent_reg_email">Enter your registered email.</string>
     <string name="reset_pass">Reset Your Password</string>
+    <string name="welcome_srs">Welcome to Service Request System</string>
+    <string name="get_started">Get Started</string>
+    <string name="are_provider">Are you a Service Provider?</string>
+    <string name="click_here">Click Here</string>
 </resources>
