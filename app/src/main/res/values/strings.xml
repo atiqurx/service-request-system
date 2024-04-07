@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">srs</string>
+    <string name="welcome">Welcome</string>
+    <string name="login_acc">Log in your account.</string>
     <string name="login">Log in</string>
     <string name="signup">Sign up</string>
     <string name="forget_password">Forgot Password?</string>
