@@ -59,3 +59,11 @@
             android:text="Tutoring" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
