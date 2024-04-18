@@ -36,6 +36,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="title_activity_customer_nav">CustomerNav</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_services">Services</string>
     <string name="title_profile">Profile</string>
 </resources>
