@@ -108,7 +108,7 @@ public class Register extends AppCompatActivity {
                                     Toast.makeText(Register.this, "Account Created.",
                                             Toast.LENGTH_SHORT).show();
                                     userID = mAuth.getCurrentUser().getUid();
-                                    DocumentReference documentReference = fStore.collection("users").document(userID);
+                                    DocumentReference documentReference = fStore.collection("customers").document(userID);
                                     Map<String, Object> user = new HashMap<>();
                                     user.put("Name", full_name);
                                     user.put("Email", email);
