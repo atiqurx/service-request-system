@@ -87,6 +87,10 @@ public class RegisterProvider extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(RegisterProvider.this, "Provider Account Created.",
                                             Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), LoginProvider.class);
+                                    startActivity(intent);
+                                    finish();
+
 
 
                                 } else {
