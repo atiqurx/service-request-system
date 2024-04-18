@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button get_start_button;
+    Button get_start_button, go_to_provider;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         get_start_button = findViewById(R.id.get_started);
+        go_to_provider = findViewById(R.id.provider_log_button);
         get_start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,5 +34,15 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        go_to_provider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginProvider.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 }

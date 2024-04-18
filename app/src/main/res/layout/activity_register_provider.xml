@@ -20,7 +20,7 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_acc"
+        android:text="@string/create_acc_provider"
         android:gravity="center"
         android:textSize="20sp"
         android:padding="10dp"/>
@@ -83,15 +83,15 @@
         android:hint="@string/conf_pass"/>
 
     <Button
-        android:id="@+id/register_button"
+        android:id="@+id/register_button_provider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/signup" />
 
     <TextView
-        android:id="@+id/login_from_register"
+        android:id="@+id/login_from_register_provider"
         android:textSize="17sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/already_account_login" />
+        android:text="@string/already_account_login_provider" />
 </LinearLayout>
