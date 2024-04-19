@@ -99,6 +99,18 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(Register.this, "Enter password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(TextUtils.isEmpty(full_name)){
+                    Toast.makeText(Register.this, "Enter your name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(phone_no)){
+                    Toast.makeText(Register.this, "Enter phone number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(address_)){
+                    Toast.makeText(Register.this, "Enter address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

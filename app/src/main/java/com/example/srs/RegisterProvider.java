@@ -97,6 +97,18 @@ public class RegisterProvider extends AppCompatActivity {
                     Toast.makeText(RegisterProvider.this, "Enter password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(TextUtils.isEmpty(full_name_provider)){
+                    Toast.makeText(RegisterProvider.this, "Enter your name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(phone_no_provider)){
+                    Toast.makeText(RegisterProvider.this, "Enter phone number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(TextUtils.isEmpty(address_provider)){
+                    Toast.makeText(RegisterProvider.this, "Enter address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
