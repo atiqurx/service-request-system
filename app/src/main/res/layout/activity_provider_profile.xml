@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SearchResults">
+    tools:context=".Provider_Profile">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search Results"
-        android:textSize="20sp"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal" />
+        android:text="Provider Information"
+        android:textSize="24sp"
+        android:padding="8dp"/>
 
 </LinearLayout>

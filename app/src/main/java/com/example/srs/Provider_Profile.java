@@ -15,7 +15,7 @@ public class Provider_Profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_results);
+        setContentView(R.layout.activity_provider_profile);
 
         // Get reference to the TextView
         textView = findViewById(R.id.textView);
