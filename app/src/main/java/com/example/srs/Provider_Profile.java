@@ -35,7 +35,7 @@ public class Provider_Profile extends AppCompatActivity {
                 QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);// Assuming there's only one document for each provider
                 // Get the value of the "name", "email", and "address" fields
                 String name = (String) document.get("name");
-                String email = (String) document.get("email");
+                String email = (String) document.get("Email");
                 String address = (String) document.get("address");
 
                 // Display the provider's information
