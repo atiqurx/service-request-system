@@ -20,6 +20,7 @@ import com.example.srs.databinding.FragmentProfileBinding;
 
 import com.example.srs.databinding.FragmentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -41,6 +42,7 @@ public class ProfileFragment extends Fragment {
 
         // Get the Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
 //        Log.d("ProfileFragment", "Fetching document");
 //        docRef.get().addOnSuccessListener(documentSnapshot -> {
@@ -66,9 +68,10 @@ public class ProfileFragment extends Fragment {
 //        }).addOnFailureListener(e -> {
 //            Log.e("ProfileFragment", "Error getting document", e);
 //        });
+        String uid = currentUser.getUid();
 
         // Get the first document from the "customers" collection
-        DocumentReference docRef = db.collection("customers").document("002");
+        DocumentReference docRef = db.collection("customers").document(uid);
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
                 // Get the data from the document
