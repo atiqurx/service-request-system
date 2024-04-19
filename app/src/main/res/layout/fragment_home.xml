@@ -16,10 +16,46 @@
         android:text="@string/title_home"
         android:textAlignment="textStart"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011" />
+        app:layout_constraintTop_toBottomOf="@+id/text_home">
+
+        <Button
+            android:id="@+id/buttonPlumbing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Plumbing" />
+
+        <Button
+            android:id="@+id/buttonCleaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Cleaning" />
+
+        <Button
+            android:id="@+id/buttonElectrical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Electrical" />
+
+        <Button
+            android:id="@+id/buttonTutoring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Tutoring" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
