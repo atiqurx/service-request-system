@@ -45,4 +45,8 @@
     <string name="title_profile">Profile</string>
     <string name="title_history">History</string>
 
+    <string name="title_activity_navbar">navbar</string>
+    <string name="title_home">Home</string>
+    <string name="title_services">Services</string>
+    <string name="title_profile">Profile</string>
 </resources>
