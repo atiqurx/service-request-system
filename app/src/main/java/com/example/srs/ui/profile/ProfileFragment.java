@@ -1,21 +1,25 @@
 package com.example.srs.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.srs.MainActivity;
 import com.example.srs.R;
 import com.example.srs.databinding.FragmentProfileBinding;
 import com.example.srs.databinding.FragmentProfileBinding;
 
 import com.example.srs.databinding.FragmentProfileBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -23,7 +27,7 @@ public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
     private DocumentReference docRef;
-
+    Button button;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ProfileViewModel profileViewModel =
@@ -86,6 +90,17 @@ public class ProfileFragment extends Fragment {
         }).addOnFailureListener(e -> {
             // Handle any errors
             Log.e("ProfileFragment", "Error getting document", e);
+        });
+
+        button = root.findViewById(R.id.logout_provider);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
         });
 
         return root;
