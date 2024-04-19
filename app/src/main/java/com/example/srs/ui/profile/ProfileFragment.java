@@ -20,6 +20,7 @@ import com.example.srs.databinding.FragmentProfileBinding;
 
 import com.example.srs.databinding.FragmentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -41,6 +42,7 @@ public class ProfileFragment extends Fragment {
 
         // Get the Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
 //        Log.d("ProfileFragment", "Fetching document");
 //        docRef.get().addOnSuccessListener(documentSnapshot -> {
@@ -66,31 +68,32 @@ public class ProfileFragment extends Fragment {
 //        }).addOnFailureListener(e -> {
 //            Log.e("ProfileFragment", "Error getting document", e);
 //        });
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            DocumentReference docRef = db.collection("customers").document(uid);
 
-        // Get the first document from the "customers" collection
-        DocumentReference docRef = db.collection("customers").document("002");
-        docRef.get().addOnSuccessListener(documentSnapshot -> {
-            if (documentSnapshot.exists()) {
-                // Get the data from the document
-                String name = documentSnapshot.getString("name");
-                String phone = documentSnapshot.getString("phone");
-                String address = documentSnapshot.getString("address");
+            docRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    String name = documentSnapshot.getString("Name");
+                    String phone = documentSnapshot.getString("Phone");
+                    String address = documentSnapshot.getString("Address");
 
-                Log.d("ProfileFragment", "Name: " + name + ", Phone: " + phone + ", Address: " + address);
+                    TextView nameTextView = root.findViewById(R.id.profile_name);
+                    TextView phoneTextView = root.findViewById(R.id.profile_phone);
+                    TextView addressTextView = root.findViewById(R.id.profile_address);
 
-                // Update the TextViews with the data
-                TextView nameTextView = root.findViewById(R.id.profile_name);
-                TextView phoneTextView = root.findViewById(R.id.profile_phone);
-                TextView addressTextView = root.findViewById(R.id.profile_address);
-
-                nameTextView.setText(name);
-                phoneTextView.setText(phone);
-                addressTextView.setText(address);
-            }
-        }).addOnFailureListener(e -> {
-            // Handle any errors
-            Log.e("ProfileFragment", "Error getting document", e);
-        });
+                    nameTextView.setText(name);
+                    phoneTextView.setText(phone);
+                    addressTextView.setText(address);
+                } else {
+                    Log.d("ProfileFragment", "Document does not exist!");
+                }
+            }).addOnFailureListener(e -> {
+                Log.e("ProfileFragment", "Error getting document", e);
+            });
+        } else {
+            Log.d("ProfileFragment", "No user logged in");
+        }
 
         button = root.findViewById(R.id.logout_provider);
         button.setOnClickListener(new View.OnClickListener() {
