@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         go_to_provider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginProvider.class);
+                Intent intent = new Intent(getApplicationContext(), ProviderNav.class);
                 startActivity(intent);
                 finish();
             }
