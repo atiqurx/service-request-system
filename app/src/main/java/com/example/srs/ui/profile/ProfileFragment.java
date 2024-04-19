@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.srs.R;
 import com.example.srs.databinding.FragmentProfileBinding;
+import com.example.srs.databinding.FragmentProfileBinding;
 
 import com.example.srs.databinding.FragmentProfileBinding;
 import com.google.firebase.firestore.DocumentReference;

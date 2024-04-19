@@ -62,7 +62,6 @@
             android:layout_margin="8dp"
             android:text="Tutoring" />
     </LinearLayout>
-
     <!-- FrameLayout container for the second fragment -->
         <FrameLayout
             android:id="@+id/fragmentContainer"
