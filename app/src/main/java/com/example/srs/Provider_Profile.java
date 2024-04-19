@@ -17,35 +17,37 @@ public class Provider_Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provider_profile);
 
+        // Get the provider's name from the intent extras
+        String providerName = getIntent().getStringExtra("providerName");
+
         // Get reference to the TextView
         textView = findViewById(R.id.textView);
 
         // Get the Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Reference to the "provider" collection
+        // Reference to the "providers" collection
         CollectionReference providersRef = db.collection("providers");
 
-        // Query all documents in the "provider" collection
-        providersRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                StringBuilder result = new StringBuilder();
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    // Get the value of the "name", "email", and "address" fields for each document
-                    String name = (String) document.get("name");
-                    String email = (String) document.get("email");
-                    String address = (String) document.get("address");
+        // Query the document for the specified provider's name
+        providersRef.whereEqualTo("name", providerName).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);// Assuming there's only one document for each provider
+                // Get the value of the "name", "email", and "address" fields
+                String name = (String) document.get("name");
+                String email = (String) document.get("email");
+                String address = (String) document.get("address");
 
-                    // Append the name, email, and address to the result
-                    result.append("Name: ").append(name).append("\n");
-                    result.append("Email: ").append(email).append("\n");
-                    result.append("Address: ").append(address).append("\n\n");
-                }
-                // Display the result in the TextView
+                // Display the provider's information
+                StringBuilder result = new StringBuilder();
+                result.append("Name: ").append(name).append("\n");
+                result.append("Email: ").append(email).append("\n");
+                result.append("Address: ").append(address).append("\n\n");
                 textView.setText(result.toString());
             } else {
-                textView.setText("Error getting documents");
+                textView.setText("Error getting provider information");
             }
         });
     }
+
 }

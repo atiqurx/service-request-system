@@ -77,4 +77,5 @@ public class SearchResults extends AppCompatActivity {
         intent.putExtra("providerName", providerName);
         startActivity(intent);
     }
+
 }
