@@ -1,6 +1,9 @@
 package com.example.srs;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -11,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.srs.databinding.ActivityCustomerNavBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class CustomerNav extends AppCompatActivity {
 
@@ -19,6 +23,7 @@ public class CustomerNav extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         binding = ActivityCustomerNavBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

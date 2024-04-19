@@ -14,7 +14,7 @@ import com.example.srs.databinding.ActivityNavbarBinding;
 
 public class navbar extends AppCompatActivity {
 
-    ActivityNavbarBinding binding;
+    private ActivityNavbarBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

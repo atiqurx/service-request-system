@@ -21,7 +21,7 @@
     <string name="ent_new_pass">Enter your New Password</string>
     <string name="conf_pass">Confirm your Password</string>
     <string name="confirm">Confirm</string>
-    <string name="ent_reg_email">Enter your registered email.</string>
+    <string name="ent_reg_email">Enter your registered email</string>
     <string name="reset_pass">Reset Your Password</string>
     <string name="welcome_srs">Welcome to Service Request System</string>
     <string name="get_started">Get Started</string>
@@ -40,13 +40,7 @@
     <string name="title_services">Services</string>
     <string name="title_profile">Profile</string>
     <string name="title_activity_customer_nav">CustomerNav</string>
-    <string name="title_home">Home</string>
-    <string name="title_services">Services</string>
-    <string name="title_profile">Profile</string>
     <string name="title_history">History</string>
 
-    <string name="title_activity_navbar">navbar</string>
-    <string name="title_home">Home</string>
-    <string name="title_services">Services</string>
-    <string name="title_profile">Profile</string>
+
 </resources>
