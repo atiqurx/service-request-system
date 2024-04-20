@@ -1,6 +1,8 @@
 package com.example.srs;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ public class ProviderInfo extends AppCompatActivity {
     private TextView nameTextView;
     private TextView emailTextView;
     private TextView addressTextView;
+    private Button chooseProviderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class ProviderInfo extends AppCompatActivity {
         nameTextView = findViewById(R.id.providerNameTextView);
         emailTextView = findViewById(R.id.providerEmailTextView);
         addressTextView = findViewById(R.id.providerAddressTextView);
+        chooseProviderButton = findViewById(R.id.chooseProviderButton);
 
         // Get the Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -51,6 +55,13 @@ public class ProviderInfo extends AppCompatActivity {
                 emailTextView.setText("");
                 addressTextView.setText("");
             }
+        });
+
+        // Set click listener for the Choose Provider button
+        chooseProviderButton.setOnClickListener(v -> {
+            // Start the RequestConfirmation activity
+            Intent intent = new Intent(ProviderInfo.this, RequestConfirmation.class);
+            startActivity(intent);
         });
     }
 
