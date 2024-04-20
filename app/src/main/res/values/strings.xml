@@ -49,9 +49,15 @@
     <string name="select_service_prompt">Select the service you want to provide</string>
 
     <string-array name="service_provider_array">
+        <item name="services_appliances">Appliances</item>
         <item>Plumbing</item>
-        <item>Tutoring</item>
+        <item>Electrical</item>
         <item>Home Cleaning</item>
+        <item>Tutoring</item>
+        <item>Packaging And Moving</item>
+        <item>Computer Repair</item>
+        <item>Painting</item>
+        <item>Pest Control</item>
         <item>Car Cleaning</item>
     </string-array>
 

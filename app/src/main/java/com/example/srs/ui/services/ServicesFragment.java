@@ -22,33 +22,33 @@ import com.example.srs.databinding.FragmentServicesBinding;
 public class ServicesFragment extends Fragment {
 
     private FragmentServicesBinding binding;
+    private GridLayout buttonGridLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ServicesViewModel servicesViewModel =
-                new ViewModelProvider(this).get(ServicesViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_services, container, false);
 
-        binding = FragmentServicesBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        buttonGridLayout = view.findViewById(R.id.buttonGridLayout);
 
-        final TextView textView = binding.textServices;
-        servicesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        String[] servicesArray = getResources().getStringArray(R.array.service_provider_array);
 
-        // Find all buttons in the GridLayout
-        GridLayout buttonGridLayout = root.findViewById(R.id.buttonGridLayout);
-        for (int i = 0; i < buttonGridLayout.getChildCount(); i++) {
-            View view = buttonGridLayout.getChildAt(i);
-            if (view instanceof Button) {
-                Button button = (Button) view;
-                button.setOnClickListener(v -> {
-                    // Handle button click
-                    Intent intent = new Intent(getActivity(), SearchResults.class);
-                    startActivity(intent);
-                });
-            }
+        for (String service : servicesArray) {
+            addButtonToGridLayout(service);
         }
 
-        return root;
+        return view;
+    }
+
+    private void addButtonToGridLayout(String serviceName) {
+        Button button = new Button(requireContext());
+        button.setLayoutParams(new GridLayout.LayoutParams());
+        button.setText(serviceName);
+        button.setOnClickListener(v -> {
+            // Handle button click here
+            Intent intent = new Intent(getActivity(), SearchResults.class);
+            startActivity(intent);
+        });
+        buttonGridLayout.addView(button);
     }
 
     @Override
