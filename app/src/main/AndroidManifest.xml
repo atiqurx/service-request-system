@@ -22,9 +22,6 @@
             android:name=".ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".ProviderHome"
-            android:exported="false" />
-        <activity
             android:name=".RegisterProvider"
             android:exported="false" />
         <activity

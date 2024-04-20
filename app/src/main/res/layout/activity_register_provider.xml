@@ -61,6 +61,17 @@
             android:hint="@string/phone_no"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/service_provider_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:prompt="@string/select_service_prompt"
+        android:entries="@array/service_provider_array"
+        android:spinnerMode="dialog" />
+
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

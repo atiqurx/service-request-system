@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,6 +90,9 @@ public class RegisterProvider extends AppCompatActivity {
                 full_name_provider = String.valueOf(fullName.getText());
                 phone_no_provider = String.valueOf(phoneNo.getText());
                 address_provider = String.valueOf(address.getText());
+                Spinner serviceProviderSpinner = findViewById(R.id.service_provider_spinner);
+                String selectedService = serviceProviderSpinner.getSelectedItem().toString();
+
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(RegisterProvider.this, "Enter email", Toast.LENGTH_SHORT).show();
@@ -125,6 +130,8 @@ public class RegisterProvider extends AppCompatActivity {
                                     user.put("Email", email);
                                     user.put("Phone", phone_no_provider);
                                     user.put("Address", address_provider);
+                                    user.put("servicesOffered", selectedService);
+
                                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
