@@ -122,10 +122,10 @@ public class Register extends AppCompatActivity {
                                     userID = mAuth.getCurrentUser().getUid();
                                     DocumentReference documentReference = fStore.collection("customers").document(userID);
                                     Map<String, Object> user = new HashMap<>();
-                                    user.put("Name", full_name);
-                                    user.put("Email", email);
-                                    user.put("Phone", phone_no);
-                                    user.put("Address", address_);
+                                    user.put("name", full_name);
+                                    user.put("email", email);
+                                    user.put("phone", phone_no);
+                                    user.put("address", address_);
                                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {

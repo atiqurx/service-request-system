@@ -126,10 +126,10 @@ public class RegisterProvider extends AppCompatActivity {
                                     userID = mAuth.getCurrentUser().getUid();
                                     DocumentReference documentReference = fStore.collection("providers").document(userID);
                                     Map<String, Object> user = new HashMap<>();
-                                    user.put("Name", full_name_provider);
-                                    user.put("Email", email);
-                                    user.put("Phone", phone_no_provider);
-                                    user.put("Address", address_provider);
+                                    user.put("name", full_name_provider);
+                                    user.put("email", email);
+                                    user.put("phone", phone_no_provider);
+                                    user.put("address", address_provider);
                                     user.put("servicesOffered", selectedService);
 
                                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {

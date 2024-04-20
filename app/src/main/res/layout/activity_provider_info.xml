@@ -10,8 +10,40 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Provider Information"
+        android:text="@string/provider_info"
         android:textSize="24sp"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/providerNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name: "
+        android:textSize="18sp"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/providerEmailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email: "
+        android:textSize="18sp"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/providerAddressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address: "
+        android:textSize="18sp"
+        android:padding="8dp"/>
+
+    <Button
+        android:id="@+id/chooseProviderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_provider"
+        android:layout_marginTop="16dp"
         android:padding="8dp"/>
 
 </LinearLayout>

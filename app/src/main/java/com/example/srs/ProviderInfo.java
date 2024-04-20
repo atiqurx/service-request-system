@@ -10,7 +10,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class ProviderInfo extends AppCompatActivity {
-    private TextView textView;
+    private TextView nameTextView;
+    private TextView emailTextView;
+    private TextView addressTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +22,10 @@ public class ProviderInfo extends AppCompatActivity {
         // Get the provider's name from the intent extras
         String providerName = getIntent().getStringExtra("providerName");
 
-        // Get reference to the TextView
-        textView = findViewById(R.id.textView);
+        // Get reference to the TextViews
+        nameTextView = findViewById(R.id.providerNameTextView);
+        emailTextView = findViewById(R.id.providerEmailTextView);
+        addressTextView = findViewById(R.id.providerAddressTextView);
 
         // Get the Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -32,20 +36,20 @@ public class ProviderInfo extends AppCompatActivity {
         // Query the document for the specified provider's name
         providersRef.whereEqualTo("name", providerName).get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0);// Assuming there's only one document for each provider
+                QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0); // Assuming there's only one document for each provider
                 // Get the value of the "name", "email", and "address" fields
-                String name = (String) document.get("name");
-                String email = (String) document.get("Email");
-                String address = (String) document.get("address");
+                String name = document.getString("name");
+                String email = document.getString("email");
+                String address = document.getString("address");
 
-                // Display the provider's information
-                StringBuilder result = new StringBuilder();
-                result.append("Name: ").append(name).append("\n");
-                result.append("Email: ").append(email).append("\n");
-                result.append("Address: ").append(address).append("\n\n");
-                textView.setText(result.toString());
+                // Display the provider's information in the respective TextViews
+                nameTextView.setText("Name: " + name);
+                emailTextView.setText("Email: " + email);
+                addressTextView.setText("Address: " + address);
             } else {
-                textView.setText("Error getting provider information");
+                nameTextView.setText("Error getting provider information");
+                emailTextView.setText("");
+                addressTextView.setText("");
             }
         });
     }

@@ -46,10 +46,12 @@
     <string name="title_requests">Requests</string>
     <string name="title_tips_blogs">Tips and Blogs</string>
     <string name="title_notifications">Notifications</string>
+    <string name="provider_info">Provider Information</string>
+    <string name="choose_provider">Choose Provider</string>
     <string name="select_service_prompt">Select the service you want to provide</string>
 
     <string-array name="service_provider_array">
-        <item name="services_appliances">Appliances</item>
+        <item >Appliances</item>
         <item>Plumbing</item>
         <item>Electrical</item>
         <item>Home Cleaning</item>
