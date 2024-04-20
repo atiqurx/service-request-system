@@ -36,13 +36,15 @@ public class ProviderInfo extends AppCompatActivity {
                 // Get the value of the "name", "email", and "address" fields
                 String name = (String) document.get("name");
                 String email = (String) document.get("Email");
-                String address = (String) document.get("address");
+                String address = (String) document.get("Address");
+                String servicesOffered = (String) document.get("servicesOffered");
 
                 // Display the provider's information
                 StringBuilder result = new StringBuilder();
                 result.append("Name: ").append(name).append("\n");
                 result.append("Email: ").append(email).append("\n");
-                result.append("Address: ").append(address).append("\n\n");
+                result.append("Address: ").append(address).append("\n");
+                result.append("Services offered: ").append(servicesOffered).append("\n\n");
                 textView.setText(result.toString());
             } else {
                 textView.setText("Error getting provider information");

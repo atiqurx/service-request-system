@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.services.ServicesFragment">
+    tools:context=".SearchResults">
 
     <TextView
         android:id="@+id/text_services"
@@ -16,11 +16,10 @@
         android:text="@string/title_services"
         android:textAlignment="textStart"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/buttonGridLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.011" />
 
     <GridLayout
@@ -37,62 +36,72 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:text="Appliances" />
+            android:text="Appliances"
+            android:onClick="onServiceButtonClick" />
 
         <Button
             android:id="@+id/buttonPlumbing"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:text="Plumbing" />
+            android:text="Plumbing"
+            android:onClick="onServiceButtonClick" />
+
 
         <Button
             android:id="@+id/button1"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:text="Electrical" />
+            android:text="Electrical"
+            android:onClick="onServiceButtonClick" />/>
 
         <Button
             android:id="@+id/button2"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:text="Home Cleaning" />
+            android:text="Home Cleaning"
+            android:onClick="onServiceButtonClick" />/>
 
         <Button
             android:id="@+id/button3"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:text="Tutoring" />
+            android:text="Tutoring"
+            android:onClick="onServiceButtonClick" />/>
 
         <Button
             android:id="@+id/button4"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:text="Packaging and Moving" />
+            android:text="Packaging and Moving"
+            android:onClick="onServiceButtonClick" />/>
 
         <Button
             android:id="@+id/button5"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:text="Computer Repair" />
+            android:text="Computer Repair"
+            android:onClick="onServiceButtonClick" />/>
 
         <Button
             android:id="@+id/button6"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:text="Home repair and Painting" />
+            android:text="Home repair and Painting"
+            android:onClick="onServiceButtonClick" />/>
 
         <Button
             android:id="@+id/button7"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:text="Pest control" />
+            android:text="Pest control"
+            android:onClick="onServiceButtonClick" />/>
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
