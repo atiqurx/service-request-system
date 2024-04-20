@@ -73,7 +73,7 @@ public class SearchResults extends AppCompatActivity {
 
     // Method to start Provider_Profile activity and pass the provider's name as an extra
     private void startProviderProfileActivity(String providerName) {
-        Intent intent = new Intent(this, Provider_Profile.class);
+        Intent intent = new Intent(this, ProviderInfo.class);
         intent.putExtra("providerName", providerName);
         startActivity(intent);
     }

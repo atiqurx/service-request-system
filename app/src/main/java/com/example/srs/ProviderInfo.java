@@ -9,13 +9,13 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-public class Provider_Profile extends AppCompatActivity {
+public class ProviderInfo extends AppCompatActivity {
     private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_provider_profile);
+        setContentView(R.layout.activity_provider_info);
 
         // Get the provider's name from the intent extras
         String providerName = getIntent().getStringExtra("providerName");
