@@ -15,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.srs.ui.providerHome.ProviderHomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -27,7 +28,7 @@ public class LoginProvider extends AppCompatActivity {
     TextInputEditText editTextEmail, editTextPassword;
     Button buttonLoginP;
     FirebaseAuth mAuth;
-    TextView textView;
+    TextView textView, forgotPassword;
 
     @Override
     public void onStart() {
@@ -56,11 +57,21 @@ public class LoginProvider extends AppCompatActivity {
         editTextPassword = findViewById(R.id.login_password);
         buttonLoginP = findViewById(R.id.login_button_provider);
         textView = findViewById(R.id.register_from_login_provider);
+        forgotPassword = findViewById(R.id.forgot_password_provider);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RegisterProvider.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
                 startActivity(intent);
                 finish();
             }
@@ -87,7 +98,7 @@ public class LoginProvider extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), ProviderNav.class);
                                     startActivity(intent);
                                     finish();
                                 } else {

@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.srs.R;
+import com.example.srs.TipsBlogsFragment;
 import com.example.srs.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -26,6 +28,11 @@ public class HomeFragment extends Fragment {
 
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainer, new TipsBlogsFragment())
+                .commit();
+
         return root;
     }
 
