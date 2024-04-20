@@ -16,24 +16,4 @@
         android:layout_marginTop="16dp"
         android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button 1"
-        android:textSize="54sp"
-        android:paddingTop="24dp"
-        android:paddingBottom="24dp"
-        android:layout_margin="8dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button 2"
-        android:textSize="54sp"
-        android:paddingTop="24dp"
-        android:paddingBottom="24dp"
-        android:layout_margin="8dp" />
-
 </LinearLayout>

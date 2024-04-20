@@ -46,6 +46,7 @@ public class ServicesFragment extends Fragment {
         button.setOnClickListener(v -> {
             // Handle button click here
             Intent intent = new Intent(getActivity(), SearchResults.class);
+            intent.putExtra("serviceSelected", serviceName);
             startActivity(intent);
         });
         buttonGridLayout.addView(button);
