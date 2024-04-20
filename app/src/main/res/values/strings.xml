@@ -46,6 +46,23 @@
     <string name="title_requests">Requests</string>
     <string name="title_tips_blogs">Tips and Blogs</string>
     <string name="title_notifications">Notifications</string>
+    <string name="provider_info">Provider Information</string>
+    <string name="choose_provider">Choose Provider</string>
+    <string name="select_service_prompt">Select the service you want to provide</string>
+
+    <string-array name="service_provider_array">
+        <item >Appliances</item>
+        <item>Plumbing</item>
+        <item>Electrical</item>
+        <item>Home Cleaning</item>
+        <item>Tutoring</item>
+        <item>Packaging And Moving</item>
+        <item>Computer Repair</item>
+        <item>Painting</item>
+        <item>Pest Control</item>
+        <item>Car Cleaning</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -74,9 +74,9 @@ public class ProfileFragment extends Fragment {
 
             docRef.get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()) {
-                    String name = documentSnapshot.getString("Name");
-                    String phone = documentSnapshot.getString("Phone");
-                    String address = documentSnapshot.getString("Address");
+                    String name = documentSnapshot.getString("name");
+                    String phone = documentSnapshot.getString("phone");
+                    String address = documentSnapshot.getString("address");
 
                     TextView nameTextView = root.findViewById(R.id.profile_name);
                     TextView phoneTextView = root.findViewById(R.id.profile_phone);
