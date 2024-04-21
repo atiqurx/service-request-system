@@ -64,7 +64,7 @@
         android:gravity="center"
         android:text="@string/logout" />
     <Button
-        android:id="@+id/logout_provider"
+        android:id="@+id/logout_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/logout"/>
