@@ -1,0 +1,9 @@
+<!-- res/layout/popup_menu_filter.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sortByRating"
+        android:title="Sort by Rating"/>
+    <item
+        android:id="@+id/sortByPrice"
+        android:title="Sort by Price"/>
+</menu>
