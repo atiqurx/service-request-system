@@ -2,6 +2,7 @@ package com.example.srs.ui.providerProfile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import com.example.srs.MainActivity;
 import com.example.srs.R;
 import com.example.srs.databinding.FragmentProviderProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProviderProfileFragment extends Fragment {
 
@@ -34,6 +38,36 @@ public class ProviderProfileFragment extends Fragment {
         final TextView textView = binding.textProviderProfile;
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
+        // Get the Firestore instance
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            DocumentReference docRef = db.collection("providers").document(uid);
+
+            docRef.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    String name = documentSnapshot.getString("name");
+                    String phone = documentSnapshot.getString("phone");
+                    String address = documentSnapshot.getString("address");
+
+                    TextView nameTextView = root.findViewById(R.id.profile_name);
+                    TextView phoneTextView = root.findViewById(R.id.profile_phone);
+                    TextView addressTextView = root.findViewById(R.id.profile_address);
+
+                    nameTextView.setText(name);
+                    phoneTextView.setText(phone);
+                    addressTextView.setText(address);
+                } else {
+                    Log.d("ProfileFragment", "Document does not exist!");
+                }
+            }).addOnFailureListener(e -> {
+                Log.e("ProfileFragment", "Error getting document", e);
+            });
+        } else {
+            Log.d("ProfileFragment", "No user logged in");
+        }
 
         button = root.findViewById(R.id.logout_provider);
         button.setOnClickListener(new View.OnClickListener() {

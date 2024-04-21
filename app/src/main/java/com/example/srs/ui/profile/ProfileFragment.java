@@ -44,30 +44,6 @@ public class ProfileFragment extends Fragment {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-//        Log.d("ProfileFragment", "Fetching document");
-//        docRef.get().addOnSuccessListener(documentSnapshot -> {
-//            if (documentSnapshot.exists()) {
-//                // Get the data from the document
-//                String name = documentSnapshot.getString("name");
-//                String phone = documentSnapshot.getString("phone");
-//                String address = documentSnapshot.getString("address");
-//
-//                Log.d("ProfileFragment", "Name: " + name + ", Phone: " + phone + ", Address: " + address);
-//
-//                // Update the TextViews with the data
-//                // ...
-//                // Update the TextViews with the data
-//                TextView nameTextView = root.findViewById(R.id.profile_name);
-//                TextView phoneTextView = root.findViewById(R.id.profile_phone);
-//                TextView addressTextView = root.findViewById(R.id.profile_address);
-//
-//                nameTextView.setText(name);
-//                phoneTextView.setText(phone);
-//                addressTextView.setText(address);
-//            }
-//        }).addOnFailureListener(e -> {
-//            Log.e("ProfileFragment", "Error getting document", e);
-//        });
         if (currentUser != null) {
             String uid = currentUser.getUid();
             DocumentReference docRef = db.collection("customers").document(uid);
@@ -95,7 +71,7 @@ public class ProfileFragment extends Fragment {
             Log.d("ProfileFragment", "No user logged in");
         }
 
-        button = root.findViewById(R.id.logout_provider);
+        button = root.findViewById(R.id.logout_customer);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
