@@ -49,6 +49,7 @@
     <string name="provider_info">Provider Information</string>
     <string name="choose_provider">Choose Provider</string>
     <string name="req_confirm">Request Confirmation</string>
+    <string name="req_info">Request Information</string>
     <string name="select_service_prompt">Select the service you want to provide</string>
 
     <string-array name="service_provider_array">

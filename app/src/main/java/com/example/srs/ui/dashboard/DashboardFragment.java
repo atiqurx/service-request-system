@@ -1,5 +1,6 @@
 package com.example.srs.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.srs.ForgotPassword;
+import com.example.srs.ProviderConfirmation;
 import com.example.srs.R;
 import com.example.srs.databinding.FragmentDashboardBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -65,7 +68,9 @@ public class DashboardFragment extends Fragment {
 
                                 // Set click listener for the button
                                 button.setOnClickListener(v -> {
-                                    // Handle button click (if needed)
+                                    Intent intent = new Intent(requireContext(), ProviderConfirmation.class);
+                                    intent.putExtra("requestUid", document.getId());
+                                    startActivity(intent);
                                 });
                             } else {
                                 // Handle error getting customer document
