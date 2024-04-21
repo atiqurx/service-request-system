@@ -74,9 +74,8 @@ public class ProviderInfo extends AppCompatActivity {
             // Start the RequestConfirmation activity
             Intent intent = new Intent(ProviderInfo.this, RequestConfirmation.class);
 
-            // Pass the customerUid and providerUid as extras to the RequestConfirmation activity
-            intent.putExtra("customerUid", customerUid);
-            intent.putExtra("providerUid", providerUid);
+            // Pass the provider's name as an extra to the RequestConfirmation activity
+            intent.putExtra("providerName", providerName);
 
             startActivity(intent);
 
