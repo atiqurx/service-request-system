@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".Payment">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/payment"
+        android:gravity="center"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:id="@+id/card_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/card_number"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/card_expiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/mm_yy"
+        />
+
+    <EditText
+        android:id="@+id/card_cvv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cvv"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"/>
+
+</LinearLayout>

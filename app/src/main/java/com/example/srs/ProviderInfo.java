@@ -72,7 +72,7 @@ public class ProviderInfo extends AppCompatActivity {
         // Set click listener for the Choose Provider button
         chooseProviderButton.setOnClickListener(v -> {
             // Start the RequestConfirmation activity
-            Intent intent = new Intent(ProviderInfo.this, RequestConfirmation.class);
+            Intent intent = new Intent(ProviderInfo.this, Payment.class);
 
             // Pass the provider's name as an extra to the RequestConfirmation activity
             intent.putExtra("providerName", providerName);
