@@ -38,6 +38,22 @@
         android:textSize="18sp"
         android:padding="8dp"/>
 
+    <TextView
+        android:id="@+id/providerPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price: "
+        android:textSize="18sp"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/providerRatingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rating: "
+        android:textSize="18sp"
+        android:padding="8dp"/>
+
     <Button
         android:id="@+id/chooseProviderButton"
         android:layout_width="wrap_content"
