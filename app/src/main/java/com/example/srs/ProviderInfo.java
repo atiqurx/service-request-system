@@ -50,37 +50,36 @@ public class ProviderInfo extends AppCompatActivity {
         // Reference to the "providers" collection
         CollectionReference providersRef = db.collection("providers");
 
-        // Query the document for the specified provider's name
         providersRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (DocumentSnapshot document : task.getResult()) {
                     String name = document.getString("name");
+                    if (name != null) {
+                        String lowercaseName = name.toLowerCase();
+                        String lowercaseProviderName = providerName.toLowerCase();
+                        if (lowercaseName.contains(lowercaseProviderName)) {
+                            String email = document.getString("email");
+                            String address = document.getString("address");
+                            Double price = document.getDouble("price");
+                            Double rating = document.getDouble("rating");
 
-                    // Convert both the search query and the stored names to lowercase
-                    String lowercaseName = name.toLowerCase();
-                    String lowercaseProviderName = providerName.toLowerCase();
+                            // Perform null checks before using the values
+                            nameTextView.setText("Name: " + name);
+                            emailTextView.setText("Email: " + email);
+                            addressTextView.setText("Address: " + address);
+                            if (price != null && rating != null) {
+                                priceTextView.setText("Price: " + price);
+                                ratingTextView.setText("Rating: " + rating);
+                            } else {
+                                // Handle the case when any of the values is null
+                                // For example, display a default value or a message
+                            }
 
-                    // Check if the lowercase name contains the lowercase search query
-                    if (lowercaseName.contains(lowercaseProviderName)) {
-                        // Get the values from the document
-                        String email = document.getString("email");
-                        String address = document.getString("address");
-                        double price = document.getDouble("price");
-                        double rating = document.getDouble("rating");
-
-                        // Display the provider's information in the respective TextViews
-                        nameTextView.setText("Name: " + name);
-                        emailTextView.setText("Email: " + email);
-                        addressTextView.setText("Address: " + address);
-                        priceTextView.setText("Price: " + price);
-                        ratingTextView.setText("Rating: " + rating);
-
-                        // Get the UID of the selected provider
-                        providerUid = document.getId();
-                        break; // Exit the loop once a match is found
+                            providerUid = document.getId();
+                            break;
+                        }
                     }
                 }
-                // If no match is found
                 if (nameTextView.getText().toString().isEmpty()) {
                     nameTextView.setText("No provider found with the specified name");
                     emailTextView.setText("");
@@ -96,6 +95,7 @@ public class ProviderInfo extends AppCompatActivity {
                 ratingTextView.setText("");
             }
         });
+
 
         // Set click listener for the Choose Provider button
         chooseProviderButton.setOnClickListener(v -> {
