@@ -10,6 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Search EditText -->
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Search provider"
+            app:layout_constraintEnd_toStartOf="@+id/searchButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Search Button -->
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/text_home"
             android:layout_width="match_parent"
@@ -22,7 +41,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/searchButton" />
 
         <LinearLayout
             android:id="@+id/buttonLayout"
@@ -34,8 +53,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_home">
 
-
-
             <TextView
                 android:id="@+id/title_services"
                 android:layout_width="match_parent"
@@ -43,7 +60,6 @@
                 android:text="@string/title_services"
                 android:textSize="24sp"
                 android:textStyle="bold" />
-
 
             <Button
                 android:id="@+id/buttonPlumbing"
@@ -73,6 +89,7 @@
                 android:layout_margin="8dp"
                 android:text="Tutoring" />
         </LinearLayout>
+
         <!-- FrameLayout container for the second fragment -->
         <FrameLayout
             android:id="@+id/fragmentContainer"
