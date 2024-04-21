@@ -70,6 +70,7 @@ public class DashboardFragment extends Fragment {
                                 button.setOnClickListener(v -> {
                                     Intent intent = new Intent(requireContext(), ProviderConfirmation.class);
                                     intent.putExtra("requestUid", document.getId());
+                                    intent.putExtra("customerName", customerName);
                                     startActivity(intent);
                                 });
                             } else {

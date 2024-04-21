@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,5 +27,11 @@ public class ProviderConfirmation extends AppCompatActivity {
 
         // Receive the requestUid from the intent extras
         String requestUid = getIntent().getStringExtra("requestUid");
+        String customerName = getIntent().getStringExtra("customerName");
+
+        // Display the customerName in the TextView
+        TextView customerNameTextView = findViewById(R.id.customerNameTextView);
+        customerNameTextView.setText(customerName);
+
     }
 }
