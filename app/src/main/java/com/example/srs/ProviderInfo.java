@@ -96,6 +96,7 @@ public class ProviderInfo extends AppCompatActivity {
             requestsRef.add(new HashMap<String, Object>() {{
                 put("customerUid", customerUid);
                 put("providerUid", providerUid);
+                put("status", "requested");
             }}).addOnSuccessListener(documentReference -> {
                 // Document added successfully
 //                System.out.println("Request document added with ID: " + documentReference.getId());
