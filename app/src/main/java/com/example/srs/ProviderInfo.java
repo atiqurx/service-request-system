@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -18,6 +19,8 @@ public class ProviderInfo extends AppCompatActivity {
     private TextView nameTextView;
     private TextView emailTextView;
     private TextView addressTextView;
+    private TextView priceTextView;
+    private TextView ratingTextView;
     private Button chooseProviderButton;
     private String providerUid;
 
@@ -37,6 +40,8 @@ public class ProviderInfo extends AppCompatActivity {
         nameTextView = findViewById(R.id.providerNameTextView);
         emailTextView = findViewById(R.id.providerEmailTextView);
         addressTextView = findViewById(R.id.providerAddressTextView);
+        priceTextView = findViewById(R.id.providerPriceTextView);
+        ratingTextView = findViewById(R.id.providerRatingTextView);
         chooseProviderButton = findViewById(R.id.chooseProviderButton);
 
         // Get the Firestore instance
@@ -48,16 +53,21 @@ public class ProviderInfo extends AppCompatActivity {
         // Query the document for the specified provider's name
         providersRef.whereEqualTo("name", providerName).get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                QueryDocumentSnapshot document = (QueryDocumentSnapshot) task.getResult().getDocuments().get(0); // Assuming there's only one document for each provider
-                // Get the value of the "name", "email", and "address" fields
+                DocumentSnapshot document = task.getResult().getDocuments().get(0);
+
+                // Get the values from the document
                 String name = document.getString("name");
                 String email = document.getString("email");
                 String address = document.getString("address");
+                double price = document.getDouble("price");
+                double rating = document.getDouble("rating");
 
                 // Display the provider's information in the respective TextViews
                 nameTextView.setText("Name: " + name);
                 emailTextView.setText("Email: " + email);
                 addressTextView.setText("Address: " + address);
+                priceTextView.setText("Price: " + price);
+                ratingTextView.setText("Rating: " + rating);
 
                 // Get the UID of the selected provider
                 providerUid = document.getId();
@@ -66,6 +76,8 @@ public class ProviderInfo extends AppCompatActivity {
                 nameTextView.setText("Error getting provider information");
                 emailTextView.setText("");
                 addressTextView.setText("");
+                priceTextView.setText("");
+                ratingTextView.setText("");
             }
         });
 
@@ -93,5 +105,4 @@ public class ProviderInfo extends AppCompatActivity {
             });
         });
     }
-
 }
