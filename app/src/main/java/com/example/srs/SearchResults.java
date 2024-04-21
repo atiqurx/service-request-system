@@ -55,7 +55,6 @@ public class SearchResults extends AppCompatActivity {
                         if (servicesOffered.contains(serviceSelected)) {
                             // Create and add a button for this document
                             // (remaining code for button creation and addition)
-                            Log.d("SearchResults", "Service offered: " + servicesOffered);
                             // Get the value of the "name" field for each document
                             String name = document.getString("name");
 

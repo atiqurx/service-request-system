@@ -17,6 +17,9 @@
             android:resource="@xml/filter_menu_popup" />
 
         <activity
+            android:name=".RequestConfirmation"
+            android:exported="false" />
+        <activity
             android:name=".ProviderInfo"
             android:exported="false" />
         <activity
