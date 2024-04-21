@@ -51,7 +51,7 @@ public class DashboardFragment extends Fragment {
                     String providerUid = document.getString("providerUid");
 
                     // Check if the providerUid matches the current user's UID
-                    if (providerUid.equals(currentUserUid)) {
+                    if (providerUid != null && providerUid.equals(currentUserUid)) {
                         // Get a reference to the "customers" collection
                         CollectionReference customersRef = FirebaseFirestore.getInstance().collection("customers");
 
