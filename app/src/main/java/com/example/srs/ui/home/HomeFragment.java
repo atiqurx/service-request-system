@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.srs.ProviderInfo;
 import com.example.srs.R;
+import com.example.srs.SearchResults;
 import com.example.srs.TipsBlogsFragment;
 import com.example.srs.databinding.FragmentHomeBinding;
 
@@ -54,11 +55,29 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // Set click listener for the buttons
+        Button buttonPlumbing = root.findViewById(R.id.buttonPlumbing);
+        Button buttonCleaning = root.findViewById(R.id.buttonCleaning);
+        Button buttonElectrical = root.findViewById(R.id.buttonElectrical);
+        Button buttonTutoring = root.findViewById(R.id.buttonTutoring);
+
+        buttonPlumbing.setOnClickListener(v -> navigateToSearchResults("Plumbing"));
+        buttonCleaning.setOnClickListener(v -> navigateToSearchResults("Cleaning"));
+        buttonElectrical.setOnClickListener(v -> navigateToSearchResults("Electrical"));
+        buttonTutoring.setOnClickListener(v -> navigateToSearchResults("Tutoring"));
+
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, new TipsBlogsFragment())
                 .commit();
 
         return root;
+    }
+
+    // Method to navigate to the search results page
+    private void navigateToSearchResults(String serviceSelected) {
+        Intent intent = new Intent(getActivity(), SearchResults.class);
+        intent.putExtra("serviceSelected", serviceSelected);
+        startActivity(intent);
     }
 
     @Override
