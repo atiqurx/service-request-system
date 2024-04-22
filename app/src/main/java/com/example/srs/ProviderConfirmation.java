@@ -2,6 +2,7 @@ package com.example.srs;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.srs.ui.providerHome.ProviderHomeFragment;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -60,9 +62,10 @@ public class ProviderConfirmation extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("requests").document(requestUid)
                 .update("status", status)
-                .addOnSuccessListener(aVoid ->
-                {
+                .addOnSuccessListener(aVoid -> {
                     Toast.makeText(ProviderConfirmation.this, "Request updated", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ProviderConfirmation.this, ProviderHomeFragment.class);
+                    startActivity(intent);
                     finish();
                 })
                 .addOnFailureListener(e -> {
@@ -70,5 +73,7 @@ public class ProviderConfirmation extends AppCompatActivity {
                     Log.e(TAG, "Error updating document", e);
                     Toast.makeText(ProviderConfirmation.this, "Failed to accept request", Toast.LENGTH_SHORT).show();
                 });
+
+
     }
 }
