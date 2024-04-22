@@ -61,10 +61,15 @@ public class DashboardFragment extends Fragment {
                                 // Get the value of the "name" field
                                 String customerName = customerTask.getResult().getString("name");
 
-                                // Create a new button for each document with the customer's name
                                 Button button = new Button(requireContext());
-                                button.setText(customerName);
-                                buttonContainer.addView(button);
+
+                                // Check the status field of the document
+                                String status = document.getString("status");
+                                if (status != null && status.equals("requested")) {
+                                    // Create a new button for each document with the customer's name
+                                    button.setText(customerName);
+                                    buttonContainer.addView(button);
+                                }
 
                                 // Set click listener for the button
                                 button.setOnClickListener(v -> {
