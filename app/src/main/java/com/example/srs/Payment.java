@@ -2,6 +2,8 @@ package com.example.srs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +35,7 @@ public class Payment extends AppCompatActivity {
         EditText cvv = findViewById(R.id.card_cvv);
         Button submit = findViewById(R.id.buttonSubmit);
 
+<<<<<<< HEAD
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String customerUid = mAuth.getCurrentUser().getUid();
         // Get the provider's name from the intent extras
@@ -41,6 +44,33 @@ public class Payment extends AppCompatActivity {
 
         // Get the Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+=======
+        expiryDate.addTextChangedListener(new TextWatcher() {
+            private String current = "";
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d]", "");
+                    String formatted = clean;
+
+                    if (clean.length() > 2) {
+                        formatted = clean.substring(0, 2) + "/" + clean.substring(2);
+                    }
+                    current = formatted;
+                    expiryDate.setText(formatted);
+                    expiryDate.setSelection(formatted.length());
+                }
+            }
+        });
+>>>>>>> fcd0742 (AutoSlashInMMYY)
 
         submit.setOnClickListener(new View.OnClickListener(){
             @Override

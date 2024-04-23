@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/mm_yy"
+        android:inputType="number"
         />
 
     <EditText
