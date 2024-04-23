@@ -1,5 +1,8 @@
 package com.example.srs;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,8 +41,9 @@ public class RequestStatus extends AppCompatActivity {
             rateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Handle button click action (e.g., navigate to rating or review activity)
-                    Toast.makeText(RequestStatus.this, "Rate or Review Clicked", Toast.LENGTH_SHORT).show();
+                    // Redirect to the RateReviewActivity
+                    Intent intent = new Intent(RequestStatus.this, RateOrReviewActivity.class);
+                    startActivity(intent);
                 }
             });
 
