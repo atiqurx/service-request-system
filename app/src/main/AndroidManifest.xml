@@ -13,8 +13,14 @@
         android:theme="@style/Theme.Srs"
         tools:targetApi="31">
         <activity
+            android:name=".RequestStatus"
+            android:exported="false"
+            android:theme="@style/Theme.Srs" />
+      
+            <activity
             android:name=".RequestCompletion"
             android:exported="false" />
+
 
         <meta-data
             android:name="com.google.android.actions"

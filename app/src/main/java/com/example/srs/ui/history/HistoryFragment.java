@@ -1,24 +1,25 @@
 package com.example.srs.ui.history;
 
-import static android.content.ContentValues.TAG;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
+import com.example.srs.RequestStatus; // Assuming you have a RequestStatusActivity
 import com.example.srs.databinding.FragmentHistoryBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HistoryFragment extends Fragment {
 
@@ -30,7 +31,8 @@ public class HistoryFragment extends Fragment {
         binding = FragmentHistoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHistory;
+        // Get a reference to the "buttonContainer" LinearLayout using view binding
+        LinearLayout buttonContainer = binding.buttonContainer;
 
         // Get the UID of the current user
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -53,16 +55,28 @@ public class HistoryFragment extends Fragment {
                             .get()
                             .addOnSuccessListener(providerDocument -> {
                                 String providerName = providerDocument.getString("name");
-                                textView.append("\n Requested Providers: ");
-                                textView.append(providerName + "\n");
+                                addButtonToLayout(providerName, buttonContainer, document.getId()); // Pass request ID to addButtonToLayout
                             });
                 }
             } else {
-                textView.setText("Error getting documents: " + task.getException());
+                // Handle error
             }
         });
 
         return root;
+    }
+
+    private void addButtonToLayout(String providerName, LinearLayout buttonContainer, String requestId) {
+        Button button = new Button(requireContext());
+        button.setText(providerName);
+        button.setOnClickListener(view -> {
+            // Navigate to RequestStatusActivity when the button is clicked
+            Intent intent = new Intent(requireContext(), RequestStatus.class);
+            intent.putExtra("requestId", requestId);
+            intent.putExtra("providerName", providerName);// Pass request ID to RequestStatusActivity
+            startActivity(intent);
+        });
+        buttonContainer.addView(button);
     }
 
     @Override
