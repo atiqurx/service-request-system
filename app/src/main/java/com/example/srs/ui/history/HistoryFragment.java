@@ -70,14 +70,23 @@ public class HistoryFragment extends Fragment {
         Button button = new Button(requireContext());
         button.setText(providerName);
         button.setOnClickListener(view -> {
-            // Navigate to RequestStatusActivity when the button is clicked
-            Intent intent = new Intent(requireContext(), RequestStatus.class);
-            intent.putExtra("requestId", requestId);
-            intent.putExtra("providerName", providerName);// Pass request ID to RequestStatusActivity
-            startActivity(intent);
+            // Get the status field of the request ID
+            FirebaseFirestore.getInstance().collection("requests")
+                    .document(requestId)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        String requestStatus = documentSnapshot.getString("status");
+                        // Navigate to RequestStatusActivity when the button is clicked
+                        Intent intent = new Intent(requireContext(), RequestStatus.class);
+                        intent.putExtra("requestId", requestId);
+                        intent.putExtra("providerName", providerName);
+                        intent.putExtra("requestStatus", requestStatus);
+                        startActivity(intent);
+                    });
         });
         buttonContainer.addView(button);
     }
+
 
     @Override
     public void onDestroyView() {
