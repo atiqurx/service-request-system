@@ -24,6 +24,7 @@ import java.util.Map;
 public class HistoryFragment extends Fragment {
 
     private FragmentHistoryBinding binding;
+    private String providerUid;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class HistoryFragment extends Fragment {
                 // Loop through each document in the result
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     // Get the "providerUid" and "customerUid" fields
-                    String providerUid = document.getString("providerUid");
+                    providerUid = document.getString("providerUid");
 
                     // Get the provider name using the provider UID
                     FirebaseFirestore.getInstance().collection("providers")
@@ -55,7 +56,8 @@ public class HistoryFragment extends Fragment {
                             .get()
                             .addOnSuccessListener(providerDocument -> {
                                 String providerName = providerDocument.getString("name");
-                                addButtonToLayout(providerName, buttonContainer, document.getId()); // Pass request ID to addButtonToLayout
+                                addButtonToLayout(providerName, document.getString("providerUid"), buttonContainer, document.getId());
+                                // Pass request ID to addButtonToLayout
                             });
                 }
             } else {
@@ -66,7 +68,7 @@ public class HistoryFragment extends Fragment {
         return root;
     }
 
-    private void addButtonToLayout(String providerName, LinearLayout buttonContainer, String requestId) {
+    private void addButtonToLayout(String providerName, String providerUid, LinearLayout buttonContainer, String requestId) {
         Button button = new Button(requireContext());
         button.setText(providerName);
         button.setOnClickListener(view -> {
@@ -80,12 +82,16 @@ public class HistoryFragment extends Fragment {
                         Intent intent = new Intent(requireContext(), RequestStatus.class);
                         intent.putExtra("requestId", requestId);
                         intent.putExtra("providerName", providerName);
+                        intent.putExtra("providerUid", providerUid); // Passing providerUid as extra
                         intent.putExtra("requestStatus", requestStatus);
                         startActivity(intent);
                     });
         });
         buttonContainer.addView(button);
     }
+
+
+
 
 
     @Override
