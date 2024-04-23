@@ -102,26 +102,14 @@ public class ProviderInfo extends AppCompatActivity {
             // Check if provider information has been loaded
             if (!nameTextView.getText().toString().isEmpty()) {
                 // Start the RequestConfirmation activity
-                Intent intent = new Intent(ProviderInfo.this, RequestConfirmation.class);
+                Intent intent = new Intent(ProviderInfo.this, Payment.class);
 
-                // Pass the provider's name as an extra to the RequestConfirmation activity
+                // Pass the provider's name as an extra to the Payment activity
                 intent.putExtra("providerName", providerName);
+                intent.putExtra("providerUid", providerUid);
 
                 startActivity(intent);
 
-                // Create a new document under the "requests" collection
-                CollectionReference requestsRef = db.collection("requests");
-                requestsRef.add(new HashMap<String, Object>() {{
-                    put("customerUid", customerUid);
-                    put("providerUid", providerUid);
-                    put("status", "requested");
-                }}).addOnSuccessListener(documentReference -> {
-                    // Document added successfully
-//                    System.out.println("Request document added with ID: " + documentReference.getId());
-                }).addOnFailureListener(e -> {
-                    // Handle any errors
-//                    System.out.println("Error adding request document: " + e.getMessage());
-                });
             } else {
                 Toast.makeText(ProviderInfo.this, "No provider found with the specified name", Toast.LENGTH_SHORT).show();
             }
