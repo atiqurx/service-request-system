@@ -14,6 +14,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class ProviderInfo extends AppCompatActivity {
     private TextView nameTextView;
@@ -23,6 +24,8 @@ public class ProviderInfo extends AppCompatActivity {
     private TextView ratingTextView;
     private Button chooseProviderButton;
     private String providerUid;
+    // Add a TextView to display the reviews
+    private TextView reviewsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class ProviderInfo extends AppCompatActivity {
         priceTextView = findViewById(R.id.providerPriceTextView);
         ratingTextView = findViewById(R.id.providerRatingTextView);
         chooseProviderButton = findViewById(R.id.chooseProviderButton);
+        // Initialize the reviewsTextView
+        reviewsTextView = findViewById(R.id.reviewsTextView);
 
         // Get the Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -57,6 +62,7 @@ public class ProviderInfo extends AppCompatActivity {
                     if (name != null) {
                         String lowercaseName = name.toLowerCase();
                         String lowercaseProviderName = providerName.toLowerCase();
+
                         if (lowercaseName.contains(lowercaseProviderName)) {
                             String email = document.getString("email");
                             String address = document.getString("address");
@@ -69,10 +75,24 @@ public class ProviderInfo extends AppCompatActivity {
                             addressTextView.setText("Address: " + address);
                             if (price != null && rating != null) {
                                 priceTextView.setText("Price: " + price);
-                                ratingTextView.setText("Rating: " + rating);
+                                ratingTextView.setText("Rating: " + String.format("%.2f", rating));
                             } else {
                                 // Handle the case when any of the values is null
                                 // For example, display a default value or a message
+                            }
+
+                            // Retrieve the reviews array
+                            List<String> reviews = (List<String>) document.get("reviews");
+
+                            // Display reviews if the array is not empty
+                            if (reviews != null && !reviews.isEmpty()) {
+                                StringBuilder reviewsBuilder = new StringBuilder();
+                                for (String review : reviews) {
+                                    reviewsBuilder.append(review).append("\n"); // Append each review to the StringBuilder
+                                }
+                                reviewsTextView.setText(reviewsBuilder.toString()); // Set the reviews text to the TextView
+                            } else {
+                                reviewsTextView.setText("No reviews available"); // Display a message if there are no reviews
                             }
 
                             providerUid = document.getId();
