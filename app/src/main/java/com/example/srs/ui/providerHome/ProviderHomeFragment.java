@@ -1,9 +1,11 @@
 package com.example.srs.ui.providerHome;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.srs.R;
+import com.example.srs.RequestCompletion;
 import com.example.srs.databinding.FragmentProviderHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -50,13 +53,14 @@ public class ProviderHomeFragment extends Fragment {
         requestsRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 // Loop through each document in the result
+                // Loop through each document in the result
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     // Get the "customerUid", "providerUid", and "status" fields
                     String customerUid = document.getString("customerUid");
                     String providerUid = document.getString("providerUid");
                     String status = document.getString("status");
 
-                    // Check if the providerUid matches the current user's UID
+                    // Check if the providerUid matches the current user's UID and status is "accepted"
                     if (providerUid != null && providerUid.equals(currentUserUid) && "accepted".equals(status)) {
                         // Query the "customers" collection for the customer's UID
                         customersRef.document(customerUid).get().addOnCompleteListener(customerTask -> {
@@ -64,12 +68,20 @@ public class ProviderHomeFragment extends Fragment {
                                 // Get the customer's name
                                 String customerName = customerTask.getResult().getString("name");
 
-                                // Create a TextView to display the data
-                                TextView dataTextView = new TextView(requireContext());
-                                dataTextView.setText("Customer Name: " + customerName + "\nStatus: " + status + "\n");
+                                // Create a new button for each document with the customer's name
+                                Button button = new Button(requireContext());
+                                button.setText("Customer Name: " + customerName);
+                                dataContainer.addView(button);
 
-                                // Add the TextView to the dataContainer
-                                dataContainer.addView(dataTextView);
+                                // Set click listener for the button
+                                button.setOnClickListener(v -> {
+                                    // Start RequestCompletion activity
+                                    Intent intent = new Intent(requireContext(), RequestCompletion.class);
+                                    intent.putExtra("customerName", customerName);
+                                    intent.putExtra("status", status);
+                                    intent.putExtra("requestUid", document.getId());
+                                    startActivity(intent);
+                                });
                             } else {
                                 Log.d("FirestoreData", "Error getting customer document: ", customerTask.getException());
                             }
