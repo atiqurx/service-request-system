@@ -11,6 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class RateOrReview extends AppCompatActivity {
 
     private RatingBar ratingBar;
@@ -42,39 +47,50 @@ public class RateOrReview extends AppCompatActivity {
             return;
         }
 
-        // Calculate total points (each star is 1 point)
-        int totalPoints = (int) rating;
-
-        // Check if the rating field is null for the providerUid
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         // Retrieve providerUid from the intent
         String providerUid = getIntent().getStringExtra("providerUid");
         if (providerUid == null) {
             // Handle case where providerUid is not passed correctly
             Toast.makeText(this, "Provider information not available", Toast.LENGTH_SHORT).show();
             finish(); // Close the activity
+            return;
         }
 
-
+        // Update the provider document
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference providerRef = db.collection("providers").document(providerUid);
         providerRef.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
-                Double existingRating = documentSnapshot.getDouble("rating");
-                // Calculate new rating
-                Double newRating = existingRating != null ? (existingRating + totalPoints) / 2 : totalPoints;
+                // Get the existing reviews array
+                List<String> reviews = (List<String>) documentSnapshot.get("reviews");
 
-                // Update the rating field
-                providerRef.update("rating", newRating)
+                // Add the new review to the array if the review is not empty
+                if (!review.isEmpty()) {
+                    if (reviews == null) {
+                        reviews = new ArrayList<>();
+                    }
+                    reviews.add(review);
+                }
+
+                // Calculate new rating
+                Double existingRating = documentSnapshot.getDouble("rating");
+                Double newRating = rating != 0 ? ((existingRating != null ? existingRating * reviews.size() : 0) + rating) / (reviews.size() + 1) : existingRating;
+
+                // Update the provider document with the new reviews array and rating
+                Map<String, Object> updates = new HashMap<>();
+                updates.put("reviews", reviews);
+                updates.put("rating", newRating);
+
+                providerRef.update(updates)
                         .addOnSuccessListener(aVoid -> {
                             // Print the total points
-                            Toast.makeText(this, "Thank you for your rating!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Thank you for your review!", Toast.LENGTH_SHORT).show();
                             // Finish the activity and go back to the previous activity
                             finish();
                         })
                         .addOnFailureListener(e -> {
-                            // Handle failure to update rating
-                            Toast.makeText(this, "Failed to update rating", Toast.LENGTH_SHORT).show();
+                            // Handle failure to update reviews
+                            Toast.makeText(this, "Failed to update reviews", Toast.LENGTH_SHORT).show();
                         });
             } else {
                 // Provider document does not exist
@@ -85,6 +101,7 @@ public class RateOrReview extends AppCompatActivity {
             Toast.makeText(this, "Failed to get provider information", Toast.LENGTH_SHORT).show();
         });
     }
+
 
 
 }
