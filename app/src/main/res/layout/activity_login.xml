@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_button"
         android:text="@string/login"
-        android:textSize="19dp"/>
+        android:textSize="19sp"/>
 
     <TextView
         android:id="@+id/register_from_login"
