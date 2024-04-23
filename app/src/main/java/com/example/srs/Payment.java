@@ -35,7 +35,7 @@ public class Payment extends AppCompatActivity {
         EditText cvv = findViewById(R.id.card_cvv);
         Button submit = findViewById(R.id.buttonSubmit);
 
-<<<<<<< HEAD
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String customerUid = mAuth.getCurrentUser().getUid();
         // Get the provider's name from the intent extras
@@ -44,7 +44,7 @@ public class Payment extends AppCompatActivity {
 
         // Get the Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-=======
+
         expiryDate.addTextChangedListener(new TextWatcher() {
             private String current = "";
             @Override
@@ -70,7 +70,6 @@ public class Payment extends AppCompatActivity {
                 }
             }
         });
->>>>>>> fcd0742 (AutoSlashInMMYY)
 
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
