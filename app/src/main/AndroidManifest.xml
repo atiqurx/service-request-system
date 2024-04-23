@@ -26,6 +26,9 @@
             android:name="com.google.android.actions"
             android:resource="@xml/filter_menu_popup" />
 
+        <activity android:name=".RateOrReviewActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".ProviderConfirmation"
             android:exported="false" />
