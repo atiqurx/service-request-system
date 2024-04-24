@@ -60,7 +60,7 @@
                 android:id="@+id/title_services"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_services"
+                android:text="Suggestions"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
