@@ -54,7 +54,6 @@ public class Register extends AppCompatActivity {
         if(currentUser != null){
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
-            finish();
         }
 
         TextView textView = findViewById(R.id.login_from_register);

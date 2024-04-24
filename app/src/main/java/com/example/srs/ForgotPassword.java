@@ -62,7 +62,6 @@ public class ForgotPassword extends AppCompatActivity {
                                     Toast.makeText(ForgotPassword.this, "Reset Password link has been sent to Registered Email", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), Login.class);
                                     startActivity(intent);
-                                    finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
 

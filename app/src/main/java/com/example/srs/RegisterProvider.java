@@ -95,7 +95,6 @@ public class RegisterProvider extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginProvider.class);
                 startActivity(intent);
-                finish();
             }
         });
         buttonReg.setOnClickListener(new View.OnClickListener() {
