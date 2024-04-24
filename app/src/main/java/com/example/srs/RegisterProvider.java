@@ -12,17 +12,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,7 +38,7 @@ import java.util.Map;
 
 public class RegisterProvider extends AppCompatActivity {
 
-    TextInputEditText editTextEmail, editTextPassword, fullName, phoneNo, address;
+    TextInputEditText editTextEmail, editTextPassword, fullName, phoneNo, address, price;
     Button buttonReg;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
@@ -74,10 +73,10 @@ public class RegisterProvider extends AppCompatActivity {
         textView.setText(spannableString);
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register_provider);
 
         mAuth = FirebaseAuth.getInstance();
@@ -87,6 +86,7 @@ public class RegisterProvider extends AppCompatActivity {
         fullName = findViewById(R.id.full_name_provider);
         phoneNo = findViewById(R.id.phone_no_provider);
         address = findViewById(R.id.address_provider);
+        price = findViewById(R.id.price_provider);
         buttonReg = findViewById(R.id.register_button_provider);
         textView = findViewById(R.id.login_from_register_provider);
 
@@ -97,15 +97,17 @@ public class RegisterProvider extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         buttonReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email, password, full_name_provider, phone_no_provider, address_provider;
+                String email, password, full_name_provider, phone_no_provider, address_provider, price_provider;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
                 full_name_provider = String.valueOf(fullName.getText());
                 phone_no_provider = String.valueOf(phoneNo.getText());
                 address_provider = String.valueOf(address.getText());
+                price_provider = String.valueOf(price.getText());
                 Spinner serviceProviderSpinner = findViewById(R.id.service_provider_spinner);
                 String selectedService = serviceProviderSpinner.getSelectedItem().toString();
 
@@ -130,6 +132,10 @@ public class RegisterProvider extends AppCompatActivity {
                     Toast.makeText(RegisterProvider.this, "Enter address", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(TextUtils.isEmpty(price_provider)){
+                    Toast.makeText(RegisterProvider.this, "Enter price", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -147,6 +153,7 @@ public class RegisterProvider extends AppCompatActivity {
                                     user.put("phone", phone_no_provider);
                                     user.put("address", address_provider);
                                     user.put("servicesOffered", selectedService);
+                                    user.put("price", price_provider);
 
                                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
