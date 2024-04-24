@@ -157,5 +157,6 @@ public class ProviderInfo extends AppCompatActivity {
             }
 
         });
+
     }
 }

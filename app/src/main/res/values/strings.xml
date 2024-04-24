@@ -23,9 +23,9 @@
     <string name="confirm">Confirm</string>
     <string name="ent_reg_email">Enter your registered email</string>
     <string name="reset_pass">Reset Your Password</string>
-    <string name="welcome_srs">Welcome to Service Request System</string>
+    <string name="welcome_srs">Service Request System</string>
     <string name="get_started">Get Started</string>
-    <string name="are_provider">Are you a Service Provider?</string>
+    <string name="are_provider">Are you a Service Provider? Click Here</string>
     <string name="click_here">Click Here</string>
 
 
@@ -55,6 +55,7 @@
     <string name="card_number">Card Number</string>
     <string name="mm_yy">MM/YY</string>
     <string name="cvv">CVV</string>
+    <string name="api_key">AIzaSyBQGK_vPDtC0yno9xy1Ta47PWo1Fenwtas</string>
 
     <string-array name="service_provider_array">
         <item>Appliances</item>
