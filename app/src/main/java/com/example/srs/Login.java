@@ -2,7 +2,10 @@ package com.example.srs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -40,6 +44,22 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+        TextView textView = findViewById(R.id.register_from_login);
+        String text = getString(R.string.no_account_signup);
+
+        SpannableString spannableString = new SpannableString(text);
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(ContextCompat.getColor(this, R.color.red));
+
+        // Find the start and end index of "Sign up" in the text
+        int startIndex = text.indexOf("Sign up");
+        int endIndex = startIndex + "Sign up".length();
+
+        // Apply the red color to the "Sign up" text
+        spannableString.setSpan(colorSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Set the SpannableString to the TextView
+        textView.setText(spannableString);
     }
 
     @Override
@@ -47,11 +67,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = findViewById(R.id.login_email);
         editTextPassword = findViewById(R.id.login_password);

@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Register">
+    tools:context=".Register"
+    android:gravity="center"
+    android:padding="16dp" >
 
     <TextView
         android:id="@+id/textView3"
@@ -14,7 +16,8 @@
         android:layout_height="wrap_content"
         android:text="@string/register"
         android:gravity="center"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:textColor="@color/red"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -23,7 +26,8 @@
         android:text="@string/create_acc"
         android:gravity="center"
         android:textSize="20sp"
-        android:padding="10dp"/>
+        android:padding="7dp"
+        android:layout_marginBottom="16dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -34,56 +38,75 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:hint="@string/full_name" />
+            android:hint="@string/full_name"
+            android:background="@drawable/text_input"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPostalAddress"
-            android:hint="@string/address"/>
+            android:hint="@string/address"
+            android:background="@drawable/text_input"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/phone_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone"
-            android:hint="@string/phone_no"/>
+            android:hint="@string/phone_no"
+            android:background="@drawable/text_input"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="@string/ent_email"/>
+            android:hint="@string/ent_email"
+            android:background="@drawable/text_input"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="@string/ent_pass"/>
+            android:hint="@string/ent_pass"
+            android:background="@drawable/text_input"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -93,18 +116,26 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="@string/conf_pass"/>
+        android:hint="@string/conf_pass"
+        android:background="@drawable/text_input"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/signup" />
+        android:text="@string/signup"
+        android:textSize="19sp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rectangle_button"/>
 
     <TextView
         android:id="@+id/login_from_register"
         android:textSize="17sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/already_account_login" />
+        android:text="@string/already_account_login"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
