@@ -27,8 +27,7 @@ public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding binding;
     private LinearLayout buttonContainer;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -43,56 +42,57 @@ public class DashboardFragment extends Fragment {
 
         // Query all documents in the "requests" collection
         requestsRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                // Loop through each document in the result
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    // Get the "customerUid" and "providerUid" fields
-                    String customerUid = document.getString("customerUid");
-                    String providerUid = document.getString("providerUid");
+            if (isAdded()) { // Check if the fragment is attached
+                if (task.isSuccessful()) {
+                    // Loop through each document in the result
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        // Get the "customerUid" and "providerUid" fields
+                        String customerUid = document.getString("customerUid");
+                        String providerUid = document.getString("providerUid");
 
-                    // Check if the providerUid matches the current user's UID
-                    if (providerUid != null && providerUid.equals(currentUserUid)) {
-                        // Get a reference to the "customers" collection
-                        CollectionReference customersRef = FirebaseFirestore.getInstance().collection("customers");
+                        // Check if the providerUid matches the current user's UID
+                        if (providerUid != null && providerUid.equals(currentUserUid)) {
+                            // Get a reference to the "customers" collection
+                            CollectionReference customersRef = FirebaseFirestore.getInstance().collection("customers");
 
-                        // Query the document for the specified customer's UID
-                        customersRef.document(customerUid).get().addOnCompleteListener(customerTask -> {
-                            if (customerTask.isSuccessful()) {
-                                // Get the value of the "name" field
-                                String customerName = customerTask.getResult().getString("name");
+                            // Query the document for the specified customer's UID
+                            customersRef.document(customerUid).get().addOnCompleteListener(customerTask -> {
+                                if (isAdded() && customerTask.isSuccessful()) { // Check if the fragment is still attached
+                                    // Get the value of the "name" field
+                                    String customerName = customerTask.getResult().getString("name");
 
-                                Button button = new Button(requireContext());
+                                    Button button = new Button(requireContext());
 
-                                // Check the status field of the document
-                                String status = document.getString("status");
-                                if (status != null && status.equals("requested")) {
-                                    // Create a new button for each document with the customer's name
-                                    button.setText(customerName);
-                                    buttonContainer.addView(button);
+                                    // Check the status field of the document
+                                    String status = document.getString("status");
+                                    if (status != null && status.equals("requested")) {
+                                        // Create a new button for each document with the customer's name
+                                        button.setText(customerName);
+                                        buttonContainer.addView(button);
+                                    }
+
+                                    // Set click listener for the button
+                                    button.setOnClickListener(v -> {
+                                        Intent intent = new Intent(requireContext(), ProviderConfirmation.class);
+                                        intent.putExtra("requestUid", document.getId());
+                                        intent.putExtra("customerName", customerName);
+                                        startActivity(intent);
+                                    });
+                                } else {
+                                    // Handle error getting customer document or fragment not attached
                                 }
-
-                                // Set click listener for the button
-                                button.setOnClickListener(v -> {
-                                    Intent intent = new Intent(requireContext(), ProviderConfirmation.class);
-                                    intent.putExtra("requestUid", document.getId());
-                                    intent.putExtra("customerName", customerName);
-                                    startActivity(intent);
-                                });
-                            } else {
-                                // Handle error getting customer document
-                            }
-                        });
+                            });
+                        }
                     }
+                } else {
+                    // Handle error getting documents
                 }
-            } else {
-                // Handle error getting documents
             }
         });
 
-
-
         return root;
     }
+
 
     @Override
     public void onDestroyView() {
