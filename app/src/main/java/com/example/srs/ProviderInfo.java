@@ -92,7 +92,7 @@ public class ProviderInfo extends AppCompatActivity {
                             addressTextView.setText("Address: " + address);
                             // Set the button text and background
                             if (price != -1) {
-                                priceTextView.setText("Price: " + price); // Include the price in the button text
+                                priceTextView.setText("Price: $" + price); // Include the price in the button text
                             } else {
                                 priceTextView.setText("Price - No price found"); // Display a message if no price found
                             }
@@ -109,10 +109,11 @@ public class ProviderInfo extends AppCompatActivity {
                             // Display reviews if the array is not empty
                             if (reviews != null && !reviews.isEmpty()) {
                                 StringBuilder reviewsBuilder = new StringBuilder();
+                                String lineSeparator = System.getProperty("line.separator");
                                 for (String review : reviews) {
-                                    reviewsBuilder.append(review).append("\n"); // Append each review to the StringBuilder
+                                    reviewsBuilder.append(review).append(lineSeparator).append(lineSeparator); // Append two new lines for spacing
                                 }
-                                reviewsTextView.setText(reviewsBuilder.toString()); // Set the reviews text to the TextView
+                                reviewsTextView.setText(reviewsBuilder.toString().trim()); // Set the reviews text to the TextView
                             } else {
                                 reviewsTextView.setText("No reviews available"); // Display a message if there are no reviews
                             }
