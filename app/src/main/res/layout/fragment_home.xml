@@ -96,11 +96,11 @@
                     android:background="@drawable/services_btn"/>
 
                 <Button
-                    android:id="@+id/buttonCleaning"
+                    android:id="@+id/buttonAppliances"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
-                    android:text="Cleaning"
+                    android:text="Appliances"
                     style="@style/CustomButton"
                     android:textColor="@color/black"
                     android:background="@drawable/services_btn"/>

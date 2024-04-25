@@ -152,6 +152,7 @@ public class SearchResults extends AppCompatActivity {
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));
                     textView.setText("No providers with the selected service at the moment");
+                    textView.setGravity(Gravity.CENTER);
                     mainLayout.addView(textView);
                 }
             } else {
