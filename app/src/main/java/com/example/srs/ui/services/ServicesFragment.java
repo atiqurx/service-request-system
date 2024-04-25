@@ -3,6 +3,7 @@ package com.example.srs.ui.services;
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class ServicesFragment extends Fragment {
         button.setCompoundDrawables(null, icon, null, null); // Set the icon on the left side of the button
 
         // Set the text below the icon
+        button.setGravity(Gravity.CENTER);
         button.setText(serviceName);
         button.setCompoundDrawablePadding(10);
         button.setTextSize(10);
