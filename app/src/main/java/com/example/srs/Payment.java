@@ -9,13 +9,9 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -23,6 +19,7 @@ import java.util.HashMap;
 
 public class Payment extends AppCompatActivity {
 
+    private Button buttonDebit, buttonCredit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +38,8 @@ public class Payment extends AppCompatActivity {
 
         // Get the Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
 
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -73,8 +72,10 @@ public class Payment extends AppCompatActivity {
         });
     }
 
+
     private boolean isValidCardInfo(String cardNumber, String expiryDate, String cvv) {
         // Simple validation logic (You should improve it according to your needs)
         return cardNumber.length() == 16 && expiryDate.matches("\\d{2}/\\d{2}") && cvv.length() == 3;
     }
+
 }
