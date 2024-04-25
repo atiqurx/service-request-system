@@ -1,6 +1,7 @@
 package com.example.srs.ui.history;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.srs.R;
 import com.example.srs.RequestStatus; // Assuming you have a RequestStatusActivity
 import com.example.srs.databinding.FragmentHistoryBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -72,26 +75,56 @@ public class HistoryFragment extends Fragment {
         if (isAdded()) {
             // Access context only if fragment is attached
             Button button = new Button(requireContext());
-            button.setText(providerName);
-            button.setOnClickListener(view -> {
-                // Get the status field of the request ID
-                FirebaseFirestore.getInstance().collection("requests")
-                        .document(requestId)
-                        .get()
-                        .addOnSuccessListener(documentSnapshot -> {
-                            String requestStatus = documentSnapshot.getString("status");
-                            // Navigate to RequestStatusActivity when the button is clicked
-                            Intent intent = new Intent(requireContext(), RequestStatus.class);
-                            intent.putExtra("requestId", requestId);
-                            intent.putExtra("providerName", providerName);
-                            intent.putExtra("providerUid", providerUid); // Passing providerUid as extra
-                            intent.putExtra("requestStatus", requestStatus);
-                            startActivity(intent);
+
+            // Get servicesOffered from provider document
+            FirebaseFirestore.getInstance().collection("providers")
+                    .document(providerUid)
+                    .get()
+                    .addOnSuccessListener(providerDocument -> {
+                        String servicesOffered = providerDocument.getString("servicesOffered");
+                        // Set button text with provider name and services offered
+                        button.setText(providerName + "\nServices Offered: " + servicesOffered);
+
+                        // Set text transformation method to none
+                        button.setAllCaps(false);
+
+                        // Set background drawable from XML
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            button.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.provider_card));
+                        } else {
+                            button.setBackgroundDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.provider_card));
+                        }
+
+                        // Set margins
+                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT
+                        );
+                        int marginBottomPx = 26; // Define your margin dimension in resources
+                        layoutParams.setMargins(36, 0, 36, marginBottomPx);
+                        button.setLayoutParams(layoutParams);
+
+                        button.setOnClickListener(view -> {
+                            // Get the status field of the request ID
+                            FirebaseFirestore.getInstance().collection("requests")
+                                    .document(requestId)
+                                    .get()
+                                    .addOnSuccessListener(documentSnapshot -> {
+                                        String requestStatus = documentSnapshot.getString("status");
+                                        // Navigate to RequestStatusActivity when the button is clicked
+                                        Intent intent = new Intent(requireContext(), RequestStatus.class);
+                                        intent.putExtra("requestId", requestId);
+                                        intent.putExtra("providerName", providerName);
+                                        intent.putExtra("providerUid", providerUid); // Passing providerUid as extra
+                                        intent.putExtra("requestStatus", requestStatus);
+                                        startActivity(intent);
+                                    });
                         });
-            });
-            buttonContainer.addView(button);
+                        buttonContainer.addView(button);
+                    });
         }
     }
+
 
 
 
