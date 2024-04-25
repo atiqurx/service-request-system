@@ -112,7 +112,7 @@ public class ProviderInfo extends AppCompatActivity {
                                 String lineSeparator = System.getProperty("line.separator");
                                 for (String review : reviews) {
                                     reviewsBuilder.append(review).append(lineSeparator).append(lineSeparator); // Append two new lines for spacing
-                                    reviewsBuilder.append("---------------------------------------------").append(lineSeparator);
+                                    reviewsBuilder.append("-----------------------------------------------------------\n").append(lineSeparator);
                                 }
                                 reviewsTextView.setText(reviewsBuilder.toString().trim()); // Set the reviews text to the TextView
                             } else {
