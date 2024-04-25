@@ -89,6 +89,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
                     android:text="Plumbing"
+                    style="@style/CustomButton"
+                    android:textColor="@color/black"
                     android:background="@drawable/services_btn"/>
 
                 <Button
@@ -97,6 +99,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
                     android:text="Cleaning"
+                    style="@style/CustomButton"
+                    android:textColor="@color/black"
                     android:background="@drawable/services_btn"/>
 
                 <Button
@@ -104,7 +108,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
+                    android:textColor="@color/black"
                     android:text="Electrical"
+                    style="@style/CustomButton"
                     android:background="@drawable/services_btn"/>
 
 

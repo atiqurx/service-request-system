@@ -6,5 +6,9 @@
         <item name="colorPrimary">@color/red</item>
     </style>
 
+    <style name="CustomButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/light_bg</item>
+    </style>
+
     <style name="Theme.Srs" parent="Base.Theme.Srs" />
 </resources>
