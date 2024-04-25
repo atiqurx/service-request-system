@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="36dp"
     tools:context=".ui.dashboard.DashboardFragment">
 
     <TextView
@@ -14,8 +15,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/title_requests"
-        android:textAlignment="textStart"
-        android:textSize="20sp"
+        android:gravity="center"
+        android:textSize="25sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
