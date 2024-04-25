@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -29,6 +31,16 @@ public class Payment extends AppCompatActivity {
         EditText expiryDate = findViewById(R.id.card_expiry);
         EditText cvv = findViewById(R.id.card_cvv);
         Button submit = findViewById(R.id.buttonSubmit);
+        DatePicker datePicker = findViewById(R.id.datePicker);
+        TimePicker timePicker = findViewById(R.id.timePicker);
+
+// Example of how to get the selected date and time
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year = datePicker.getYear();
+
+        int hour = timePicker.getCurrentHour();
+        int minute = timePicker.getCurrentMinute();
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String customerUid = mAuth.getCurrentUser().getUid();
