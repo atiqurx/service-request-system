@@ -85,7 +85,21 @@
         android:entries="@array/service_provider_array"
         android:spinnerMode="dialog" />
 
-
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/price_provider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:hint="@string/enter_price"
+            android:background="@drawable/text_input"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -119,18 +133,22 @@
             android:textColorHint="@android:color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <EditText
-        android:id="@+id/editTextTextPassword3"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/conf_pass"
-        android:background="@drawable/text_input"
-        android:textColor="@android:color/black"
-        android:textColorHint="@android:color/black"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="7dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/re_enter_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/conf_pass"
+            android:background="@drawable/text_input"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/register_button_provider"
