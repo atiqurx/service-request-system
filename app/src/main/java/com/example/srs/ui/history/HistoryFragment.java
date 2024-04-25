@@ -83,7 +83,7 @@ public class HistoryFragment extends Fragment {
                     .addOnSuccessListener(providerDocument -> {
                         String servicesOffered = providerDocument.getString("servicesOffered");
                         // Set button text with provider name and services offered
-                        button.setText(providerName + "\nServices Offered: " + servicesOffered);
+                        button.setText(providerName + "\nService: " + servicesOffered);
 
                         // Set text transformation method to none
                         button.setAllCaps(false);
