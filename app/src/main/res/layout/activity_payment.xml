@@ -138,5 +138,10 @@
         android:text="Submit"
         android:background="@drawable/rectangle_button"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:height="300dp"/>
+
 </LinearLayout>
 </ScrollView>
