@@ -1,14 +1,13 @@
 package com.example.srs;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class RequestStatus extends AppCompatActivity {
 
@@ -30,14 +29,14 @@ public class RequestStatus extends AppCompatActivity {
         TextView providerNameTextView = findViewById(R.id.text_provider_name);
         providerNameTextView.setText("Provider: " + providerName);
 
-//        Log.d("RequestStatus", "Provider UID: " + providerUid);
-
-
         // Check if the request status is "completed"
         if ("completed".equals(requestStatus)) {
             // If status is "completed", dynamically create a button for rating or reviewing
             Button rateButton = new Button(this);
             rateButton.setText("Rate or Review");
+            rateButton.setTextColor(ContextCompat.getColor(this, android.R.color.white));
+            rateButton.setBackgroundResource(R.drawable.rectangle_button); // Set background drawable
+
             rateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -48,12 +47,11 @@ public class RequestStatus extends AppCompatActivity {
                 }
             });
 
-            // Find the LinearLayout for buttons and cast it to LinearLayout
+            // Find the LinearLayout for buttons
             LinearLayout layoutButtons = findViewById(R.id.layout_buttons);
 
             // Add the button to the layout
             layoutButtons.addView(rateButton);
         }
-
     }
 }
