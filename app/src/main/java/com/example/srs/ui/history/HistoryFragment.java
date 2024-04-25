@@ -69,26 +69,30 @@ public class HistoryFragment extends Fragment {
     }
 
     private void addButtonToLayout(String providerName, String providerUid, LinearLayout buttonContainer, String requestId) {
-        Button button = new Button(requireContext());
-        button.setText(providerName);
-        button.setOnClickListener(view -> {
-            // Get the status field of the request ID
-            FirebaseFirestore.getInstance().collection("requests")
-                    .document(requestId)
-                    .get()
-                    .addOnSuccessListener(documentSnapshot -> {
-                        String requestStatus = documentSnapshot.getString("status");
-                        // Navigate to RequestStatusActivity when the button is clicked
-                        Intent intent = new Intent(requireContext(), RequestStatus.class);
-                        intent.putExtra("requestId", requestId);
-                        intent.putExtra("providerName", providerName);
-                        intent.putExtra("providerUid", providerUid); // Passing providerUid as extra
-                        intent.putExtra("requestStatus", requestStatus);
-                        startActivity(intent);
-                    });
-        });
-        buttonContainer.addView(button);
+        if (isAdded()) {
+            // Access context only if fragment is attached
+            Button button = new Button(requireContext());
+            button.setText(providerName);
+            button.setOnClickListener(view -> {
+                // Get the status field of the request ID
+                FirebaseFirestore.getInstance().collection("requests")
+                        .document(requestId)
+                        .get()
+                        .addOnSuccessListener(documentSnapshot -> {
+                            String requestStatus = documentSnapshot.getString("status");
+                            // Navigate to RequestStatusActivity when the button is clicked
+                            Intent intent = new Intent(requireContext(), RequestStatus.class);
+                            intent.putExtra("requestId", requestId);
+                            intent.putExtra("providerName", providerName);
+                            intent.putExtra("providerUid", providerUid); // Passing providerUid as extra
+                            intent.putExtra("requestStatus", requestStatus);
+                            startActivity(intent);
+                        });
+            });
+            buttonContainer.addView(button);
+        }
     }
+
 
 
 

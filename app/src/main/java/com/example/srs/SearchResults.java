@@ -2,9 +2,17 @@ package com.example.srs;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +33,6 @@ public class SearchResults extends AppCompatActivity {
 
     private LinearLayout mainLayout;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +64,73 @@ public class SearchResults extends AppCompatActivity {
                             // (remaining code for button creation and addition)
                             // Get the value of the "name" field for each document
                             String name = document.getString("name");
+                            Log.d("SearchResults", "Document ID: " + document.getId());
 
-                            // Create a new button for each document
+                            // Get the value of the "price" field for each document
+                            Object priceObj = document.get("price");
+                            double price = 0.0; // Default value if price field is not a valid number or if it doesn't exist
+                            if (priceObj != null && priceObj instanceof Number) {
+                                price = ((Number) priceObj).doubleValue();
+                            } else {
+                                price = -1;
+                            }
+
+                            // Get the value of the "rating" field for each document
+                            Object ratingObj = document.get("rating");
+                            double rating = 0.0; // Default value if rating field is not a valid number or if it doesn't exist
+                            if (ratingObj != null && ratingObj instanceof Number) {
+                                rating = ((Number) ratingObj).doubleValue();
+                            } else {
+                                rating = -1;
+                            }
+
                             Button button = new Button(SearchResults.this);
-                            button.setLayoutParams(new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT));
-                            button.setText(name);
+
+// Calculate the width of the button as 90% of the screen width
+                            WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+                            Display display = wm.getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int screenWidth = size.x;
+                            int buttonWidth = (int) (screenWidth * 0.9);
+
+                            // Set the layout parameters for the button
+                            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(buttonWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
+                            layoutParams.gravity = Gravity.CENTER_HORIZONTAL; // Center the button horizontally
+                            layoutParams.bottomMargin = 26;
+
+                            // Set the calculated width to the button
+                            button.setLayoutParams(layoutParams);
+
+                            // Set the button text and background
+                            if (price != -1 && rating != -1) {
+                                button.setText(name + "\n $" + price + " - Rating: " + String.format("%.2f", rating)); // Include the price and rating in the button text
+                            } else if (price != -1) {
+                                button.setText(name + "\n $ " + price + " - No rating"); // Include the price and indicate no rating
+                            } else if (rating != -1) {
+                                button.setText(name + "\n No price - Rating: " + String.format("%.2f", rating)); // Include the rating and indicate no price
+                            } else {
+                                button.setText(name + "\n No price - No rating"); // Indicate no price and no rating
+                            }
+
+                            // Create a SpannableString for the button text
+                            SpannableString spannableString = new SpannableString(name + "\n $" + price + " - Rating: " + String.format("%.2f", rating));
+
+                            // Find the index of the "$" symbol in the text
+                            int dollarIndex = spannableString.toString().indexOf("$");
+
+                            // Apply a ForegroundColorSpan to the "$" symbol to make it red
+                            ForegroundColorSpan redColorSpan = new ForegroundColorSpan(Color.RED);
+                            spannableString.setSpan(redColorSpan, dollarIndex, dollarIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                            // Set the button text to the SpannableString
+                            button.setText(spannableString);
+
+
+                            button.setBackgroundResource(R.drawable.provider_card);
+
+
+                            // Set click listener for the button
                             button.setOnClickListener(v -> {
                                 // Start the Provider_Profile activity, passing the provider's name as an extra
                                 startProviderProfileActivity(name);
@@ -71,6 +138,8 @@ public class SearchResults extends AppCompatActivity {
 
                             // Add the button to the LinearLayout
                             mainLayout.addView(button);
+
+
 
                             providersFound = true;
                         }

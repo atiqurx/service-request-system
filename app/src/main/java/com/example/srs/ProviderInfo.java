@@ -66,19 +66,41 @@ public class ProviderInfo extends AppCompatActivity {
                         if (lowercaseName.contains(lowercaseProviderName)) {
                             String email = document.getString("email");
                             String address = document.getString("address");
-                            Double price = document.getDouble("price");
-                            Double rating = document.getDouble("rating");
+//                            Double rating = document.getDouble("rating");
+
+                            // Get the value of the "price" field for each document
+                            Object priceObj = document.get("price");
+                            double price = 0.0; // Default value if price field is not a valid number or if it doesn't exist
+                            if (priceObj != null && priceObj instanceof Number) {
+                                price = ((Number) priceObj).doubleValue();
+                            } else {
+                                price = -1;
+                            }
+
+                            // Get the value of the "rating" field for each document
+                            Object ratingObj = document.get("rating");
+                            double rating = 0.0; // Default value if rating field is not a valid number or if it doesn't exist
+                            if (ratingObj != null && ratingObj instanceof Number) {
+                                rating = ((Number) ratingObj).doubleValue();
+                            } else {
+                                rating = -1;
+                            }
 
                             // Perform null checks before using the values
                             nameTextView.setText("Name: " + name);
                             emailTextView.setText("Email: " + email);
                             addressTextView.setText("Address: " + address);
-                            if (price != null && rating != null) {
-                                priceTextView.setText("Price: " + price);
-                                ratingTextView.setText("Rating: " + String.format("%.2f", rating));
+                            // Set the button text and background
+                            if (price != -1) {
+                                priceTextView.setText("Price: " + price); // Include the price in the button text
                             } else {
-                                // Handle the case when any of the values is null
-                                // For example, display a default value or a message
+                                priceTextView.setText("Price - No price found"); // Display a message if no price found
+                            }
+                            // Set the button text and background
+                            if (rating != -1) {
+                                ratingTextView.setText("Rating: " + String.format("%.2f", rating)); // Include the price in the button text
+                            } else {
+                                ratingTextView.setText("Rating - No ratings found"); // Display a message if no price found
                             }
 
                             // Retrieve the reviews array
@@ -135,5 +157,6 @@ public class ProviderInfo extends AppCompatActivity {
             }
 
         });
+
     }
 }

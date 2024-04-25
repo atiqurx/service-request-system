@@ -60,38 +60,57 @@
                 android:id="@+id/title_services"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_services"
+                android:text="Suggestions"
+                android:gravity="center"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
 
-            <!-- Buttons for Services -->
-            <Button
-                android:id="@+id/buttonPlumbing"
-                android:layout_width="match_parent"
+            <GridLayout
+                android:id="@+id/buttonGridLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Plumbing" />
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:rowCount="4"
+                android:columnCount="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_services"
+                app:layout_constraintVertical_bias="0.5">
 
-            <Button
-                android:id="@+id/buttonCleaning"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Cleaning" />
+                <!-- Buttons for Services -->
+                <Button
+                    android:id="@+id/buttonPlumbing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Plumbing"
+                    android:background="@drawable/services_btn"/>
 
-            <Button
-                android:id="@+id/buttonElectrical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Electrical" />
+                <Button
+                    android:id="@+id/buttonCleaning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Cleaning"
+                    android:background="@drawable/services_btn"/>
 
-            <Button
-                android:id="@+id/buttonTutoring"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Tutoring" />
+                <Button
+                    android:id="@+id/buttonElectrical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="Electrical"
+                    android:background="@drawable/services_btn"/>
+
+
+            </GridLayout>
+
+
         </LinearLayout>
 
         <!-- FrameLayout container for the second fragment -->

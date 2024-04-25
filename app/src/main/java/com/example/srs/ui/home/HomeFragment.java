@@ -1,6 +1,9 @@
 package com.example.srs.ui.home;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +34,7 @@ public class HomeFragment extends Fragment {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
+
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -59,18 +63,29 @@ public class HomeFragment extends Fragment {
         Button buttonPlumbing = root.findViewById(R.id.buttonPlumbing);
         Button buttonCleaning = root.findViewById(R.id.buttonCleaning);
         Button buttonElectrical = root.findViewById(R.id.buttonElectrical);
-        Button buttonTutoring = root.findViewById(R.id.buttonTutoring);
+
+        // Set icons for each button
+        setButtonIcon(buttonPlumbing, R.drawable.ic_plumbing);
+        setButtonIcon(buttonCleaning, R.drawable.ic_home_cleaning);
+        setButtonIcon(buttonElectrical, R.drawable.ic_electrical);
 
         buttonPlumbing.setOnClickListener(v -> navigateToSearchResults("Plumbing"));
         buttonCleaning.setOnClickListener(v -> navigateToSearchResults("Cleaning"));
         buttonElectrical.setOnClickListener(v -> navigateToSearchResults("Electrical"));
-        buttonTutoring.setOnClickListener(v -> navigateToSearchResults("Tutoring"));
 
         getChildFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, new TipsBlogsFragment())
                 .commit();
 
         return root;
+    }
+
+    private void setButtonIcon(Button button, int iconResId) {
+        Drawable icon = getResources().getDrawable(iconResId);
+        int iconSize = getResources().getDimensionPixelSize(R.dimen.icon_size);
+        icon.setBounds(0, 0, iconSize, iconSize);
+        button.setCompoundDrawables(null, icon, null, null);
+        button.setCompoundDrawablePadding(10);
     }
 
     // Method to navigate to the search results page
