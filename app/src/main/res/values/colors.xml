@@ -7,4 +7,6 @@
     <color name="light_bg">#EEEFF3</color>
     <color name="gray">#E1E1E1</color>
 
+        <color name="separator_color">#80000000</color> <!-- Use your desired color with opacity -->
+
 </resources>

@@ -90,17 +90,21 @@
 
     <TextView
         android:id="@+id/reviews"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reviews:"
+        android:layout_marginTop="20dp"
+        android:text="Reviews"
         android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
         android:padding="8dp"/>
 
     <TextView
         android:id="@+id/reviewsTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
+        android:gravity="center"
         android:textSize="18sp"
         android:padding="8dp"/>
 
