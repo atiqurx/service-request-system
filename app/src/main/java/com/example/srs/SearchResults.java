@@ -2,8 +2,12 @@ package com.example.srs;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -82,7 +86,7 @@ public class SearchResults extends AppCompatActivity {
 
                             Button button = new Button(SearchResults.this);
 
-                            // Calculate the width of the button as 90% of the screen width
+// Calculate the width of the button as 90% of the screen width
                             WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
                             Display display = wm.getDefaultDisplay();
                             Point size = new Point();
@@ -99,8 +103,32 @@ public class SearchResults extends AppCompatActivity {
                             button.setLayoutParams(layoutParams);
 
                             // Set the button text and background
-                            button.setText(name);
+                            if (price != -1 && rating != -1) {
+                                button.setText(name + "\n $" + price + " - Rating: " + String.format("%.2f", rating)); // Include the price and rating in the button text
+                            } else if (price != -1) {
+                                button.setText(name + "\n $ " + price + " - No rating"); // Include the price and indicate no rating
+                            } else if (rating != -1) {
+                                button.setText(name + "\n No price - Rating: " + String.format("%.2f", rating)); // Include the rating and indicate no price
+                            } else {
+                                button.setText(name + "\n No price - No rating"); // Indicate no price and no rating
+                            }
+
+                            // Create a SpannableString for the button text
+                            SpannableString spannableString = new SpannableString(name + "\n $" + price + " - Rating: " + String.format("%.2f", rating));
+
+                            // Find the index of the "$" symbol in the text
+                            int dollarIndex = spannableString.toString().indexOf("$");
+
+                            // Apply a ForegroundColorSpan to the "$" symbol to make it red
+                            ForegroundColorSpan redColorSpan = new ForegroundColorSpan(Color.RED);
+                            spannableString.setSpan(redColorSpan, dollarIndex, dollarIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                            // Set the button text to the SpannableString
+                            button.setText(spannableString);
+
+
                             button.setBackgroundResource(R.drawable.provider_card);
+
 
                             // Set click listener for the button
                             button.setOnClickListener(v -> {

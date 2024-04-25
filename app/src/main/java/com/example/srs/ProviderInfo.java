@@ -98,7 +98,7 @@ public class ProviderInfo extends AppCompatActivity {
                             }
                             // Set the button text and background
                             if (rating != -1) {
-                                ratingTextView.setText("Rating: " + rating); // Include the price in the button text
+                                ratingTextView.setText("Rating: " + String.format("%.2f", rating)); // Include the price in the button text
                             } else {
                                 ratingTextView.setText("Rating - No ratings found"); // Display a message if no price found
                             }
