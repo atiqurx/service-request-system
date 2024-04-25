@@ -17,20 +17,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
         android:layout_marginTop="36dp"
-        android:textStyle="bold"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:textColor="@color/red"/>
+
+    <!-- Add an ImageView -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/confirmation_img"
+        app:layout_constraintTop_toBottomOf="@id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="-16dp"
+        android:layout_marginBottom="16dp"
+        />
 
     <TextView
         android:id="@+id/providerNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Provider Name Placeholder"
+        android:text="Provider Name"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/textView5"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="26dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginEnd="16dp"
+        android:padding="10dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_tips_blogs"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:gravity="center"
         android:textColor="@color/red"
         android:layout_marginBottom="12dp"/>
