@@ -6,9 +6,21 @@
         <item name="colorPrimary">@color/red</item>
     </style>
 
+    <style name="CustomRoundedTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">18dp</item>
+        <item name="boxCornerRadiusTopEnd">18dp</item>
+        <item name="boxCornerRadiusBottomStart">18dp</item>
+        <item name="boxCornerRadiusBottomEnd">18dp</item>
+        <!-- Optionally, adjust the padding inside the text field to match the rounded corners -->
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxBackgroundColor">@color/light_bg</item>
+    </style>
+
     <style name="CustomButton" parent="Widget.Material3.Button">
         <item name="backgroundTint">@color/light_bg</item>
     </style>
+
+
 
     <style name="Theme.Srs" parent="Base.Theme.Srs" />
 </resources>
