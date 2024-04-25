@@ -2,6 +2,7 @@ package com.example.srs.ui.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.srs.ForgotPassword;
 import com.example.srs.ProviderConfirmation;
 import com.example.srs.R;
 import com.example.srs.databinding.FragmentDashboardBinding;
@@ -68,16 +68,31 @@ public class DashboardFragment extends Fragment {
                                     if (status != null && status.equals("requested")) {
                                         // Create a new button for each document with the customer's name
                                         button.setText(customerName);
+                                        button.setTextColor(getResources().getColor(android.R.color.black)); // Set text color to white
+                                        button.setTextSize(16); // Set text size
+                                        button.setBackgroundResource(R.drawable.card_background); // Set background to a drawable resource
+                                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                                LinearLayout.LayoutParams.WRAP_CONTENT
+                                        );
+                                        params.setMargins(36, 0, 36, 0); // Set margins
+
+                                        // Dynamically change the button height here
+                                        int buttonHeightInPixels = 200; // Set the desired height in pixels dynamically
+                                        params.height = buttonHeightInPixels;
+
+                                        button.setLayoutParams(params); // Set layout parameters
+
+                                        // Set click listener for the button
+                                        button.setOnClickListener(v -> {
+                                            Intent intent = new Intent(requireContext(), ProviderConfirmation.class);
+                                            intent.putExtra("requestUid", document.getId());
+                                            intent.putExtra("customerName", customerName);
+                                            startActivity(intent);
+                                        });
+
                                         buttonContainer.addView(button);
                                     }
-
-                                    // Set click listener for the button
-                                    button.setOnClickListener(v -> {
-                                        Intent intent = new Intent(requireContext(), ProviderConfirmation.class);
-                                        intent.putExtra("requestUid", document.getId());
-                                        intent.putExtra("customerName", customerName);
-                                        startActivity(intent);
-                                    });
                                 } else {
                                     // Handle error getting customer document or fragment not attached
                                 }
