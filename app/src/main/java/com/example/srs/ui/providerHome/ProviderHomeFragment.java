@@ -1,4 +1,5 @@
 package com.example.srs.ui.providerHome;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.view.Gravity;
+
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,7 +23,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class ProviderHomeFragment extends Fragment {
 
@@ -53,7 +55,6 @@ public class ProviderHomeFragment extends Fragment {
         requestsRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 // Loop through each document in the result
-                // Loop through each document in the result
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     // Get the "customerUid", "providerUid", and "status" fields
                     String customerUid = document.getString("customerUid");
@@ -70,8 +71,22 @@ public class ProviderHomeFragment extends Fragment {
 
                                 // Create a new button for each document with the customer's name
                                 Button button = new Button(requireContext());
-                                button.setText("Customer Name: " + customerName);
-                                dataContainer.addView(button);
+                                button.setText("Pending: " + customerName);
+                                button.setTextColor(getResources().getColor(android.R.color.black)); // Set text color to white
+                                button.setTextSize(16); // Set text size
+                                button.setBackgroundResource(R.drawable.card_background); // Set background to a drawable resource
+                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.MATCH_PARENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                );
+                                params.setMargins(36, 0, 36, 26); // Set margins
+
+                                // Dynamically change the button height here
+                                int buttonHeightInPixels = 250; // Set the desired height in pixels dynamically
+                                params.height = buttonHeightInPixels;
+                                params.gravity = Gravity.CENTER_HORIZONTAL;
+
+                                button.setLayoutParams(params); // Set layout parameters
 
                                 // Set click listener for the button
                                 button.setOnClickListener(v -> {
@@ -82,6 +97,8 @@ public class ProviderHomeFragment extends Fragment {
                                     intent.putExtra("requestUid", document.getId());
                                     startActivity(intent);
                                 });
+
+                                dataContainer.addView(button);
                             } else {
                                 Log.d("FirestoreData", "Error getting customer document: ", customerTask.getException());
                             }
@@ -92,7 +109,6 @@ public class ProviderHomeFragment extends Fragment {
                 Log.d("FirestoreData", "Error getting documents: ", task.getException());
             }
         });
-
 
         return root;
     }

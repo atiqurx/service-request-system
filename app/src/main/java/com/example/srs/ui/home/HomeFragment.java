@@ -61,16 +61,16 @@ public class HomeFragment extends Fragment {
 
         // Set click listener for the buttons
         Button buttonPlumbing = root.findViewById(R.id.buttonPlumbing);
-        Button buttonCleaning = root.findViewById(R.id.buttonCleaning);
+        Button buttonAppliances = root.findViewById(R.id.buttonAppliances);
         Button buttonElectrical = root.findViewById(R.id.buttonElectrical);
 
         // Set icons for each button
         setButtonIcon(buttonPlumbing, R.drawable.ic_plumbing);
-        setButtonIcon(buttonCleaning, R.drawable.ic_home_cleaning);
+        setButtonIcon(buttonAppliances, R.drawable.ic_appliances);
         setButtonIcon(buttonElectrical, R.drawable.ic_electrical);
 
         buttonPlumbing.setOnClickListener(v -> navigateToSearchResults("Plumbing"));
-        buttonCleaning.setOnClickListener(v -> navigateToSearchResults("Cleaning"));
+        buttonAppliances.setOnClickListener(v -> navigateToSearchResults("Appliances"));
         buttonElectrical.setOnClickListener(v -> navigateToSearchResults("Electrical"));
 
         getChildFragmentManager().beginTransaction()

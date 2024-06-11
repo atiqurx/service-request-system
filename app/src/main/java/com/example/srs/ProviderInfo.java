@@ -94,13 +94,13 @@ public class ProviderInfo extends AppCompatActivity {
                             if (price != -1) {
                                 priceTextView.setText("Price: $" + price); // Include the price in the button text
                             } else {
-                                priceTextView.setText("Price - No price found"); // Display a message if no price found
+                                priceTextView.setText("Price: No price found"); // Display a message if no price found
                             }
                             // Set the button text and background
                             if (rating != -1) {
                                 ratingTextView.setText("Rating: " + String.format("%.2f", rating)); // Include the price in the button text
                             } else {
-                                ratingTextView.setText("Rating - No ratings found"); // Display a message if no price found
+                                ratingTextView.setText("Rating: No ratings found"); // Display a message if no price found
                             }
 
                             // Retrieve the reviews array
