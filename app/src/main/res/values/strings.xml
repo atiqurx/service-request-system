@@ -57,7 +57,7 @@
     <string name="card_number">Card Number</string>
     <string name="mm_yy">MM/YY</string>
     <string name="cvv">CVV</string>
-    <string name="api_key">AIzaSyBQGK_vPDtC0yno9xy1Ta47PWo1Fenwtas</string>
+
 
     <string-array name="service_provider_array">
         <item>Appliances</item>
